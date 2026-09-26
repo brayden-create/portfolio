@@ -1,42 +1,22 @@
-# sv
+# Brayden Gregersen · portfolio + resume
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Live: https://brayden-gregersen.pages.dev
 
-## Creating a project
+SvelteKit (Svelte 5 runes, TypeScript), prerendered and deployed to Cloudflare Pages. The visual design is a from-scratch homage to nexplayground.com, using open-source fonts (Rubik, Be Vietnam Pro). It isn't affiliated with Nex.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## How it's put together
 
-```sh
-# create a new project
-npx sv create my-app
+- `src/lib/data/projects.ts` holds the content model. Projects are typed documents, so they could move into a headless CMS (for example Sanity) without touching components.
+- `src/lib/components/` is the small component set: `Nav`, `Button`, `ProjectCard`, `WordBands`, `Cube` (a CSS-only 3D cube) and `Footer`.
+- `src/routes/resume/` is the resume. A print stylesheet turns the same page into a one-page letter PDF.
+- `scripts/scrub.js` is a copy lint that runs before every build and fails it on em/en dashes and stock AI phrasing.
+
+## Develop
+
+```bash
+npm install
+npm run dev        # local dev
+npm run check      # svelte-check + TypeScript
+npm run build      # copy lint + prerendered build to .svelte-kit/cloudflare
+npx wrangler pages deploy .svelte-kit/cloudflare --project-name=brayden-gregersen --branch=main
 ```
-
-To recreate this project with the same configuration:
-
-```sh
-# recreate this project
-npx sv@0.17.1 create --template minimal --types ts --install npm portfolio
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.

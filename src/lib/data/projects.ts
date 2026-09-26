@@ -134,6 +134,7 @@ export const projects: Project[] = [
 			'SvelteKit on Cloudflare Pages. It has a typed content model, a small component set, a CSS-only 3D cube, and a resume route with a print stylesheet so the PDF comes from the same source.',
 		hard:
 			'The design takes cues from nexplayground.com, rebuilt from scratch on open-source fonts.',
-		stack: ['SvelteKit', 'Svelte 5 runes', 'TypeScript', 'Cloudflare Pages']
+		stack: ['SvelteKit', 'Svelte 5 runes', 'TypeScript', 'Cloudflare Pages'],
+		link: { href: 'https://github.com/brayden-create/portfolio', label: 'Source on GitHub' }
 	}
 ];
