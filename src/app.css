@@ -1,0 +1,89 @@
+:root {
+	--ink: #271c13;
+	--ink-2: #28292e;
+	--paper: #ededed;
+	--white: #ffffff;
+	--mist: #bbbcc4;
+	--green: #007e2e;
+	--green-2: #3a9b5d;
+	--mint: #c4e1ce;
+	--teal: #5cc9b8;
+	--teal-deep: #00a896;
+	--coral: #ff4733;
+	--violet: #5b2eff;
+	--tan: #87715e;
+	--sand: #b8aca3;
+
+	--display: 'Rubik', 'Arial Black', system-ui, sans-serif;
+	--body: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
+	--mono: 'Roboto Mono', ui-monospace, monospace;
+
+	--wrap: min(1180px, calc(100vw - 32px));
+	--radius: 18px;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+	overflow-x: clip;
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	background: var(--paper);
+	color: var(--ink);
+	font: 400 17px/1.6 var(--body);
+	-webkit-font-smoothing: antialiased;
+	overflow-x: clip;
+}
+
+img {
+	max-width: 100%;
+	display: block;
+}
+
+a {
+	color: inherit;
+}
+
+.display {
+	font-family: var(--display);
+	font-weight: 900;
+	text-transform: uppercase;
+	line-height: 0.9;
+	letter-spacing: -0.01em;
+	margin: 0;
+	text-wrap: balance;
+}
+
+.wrap {
+	width: var(--wrap);
+	margin-inline: auto;
+}
+
+.eyebrow {
+	font: 600 13px/1 var(--body);
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+
+:focus-visible {
+	outline: 3px solid var(--violet);
+	outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation: none !important;
+		transition: none !important;
+		scroll-behavior: auto !important;
+	}
+}
