@@ -1,11 +1,11 @@
 <script lang="ts">
+	import { navSurface } from '$lib/navSurface';
 	import { page } from '$app/state';
 
-	let scrolled = $state(false);
 	let open = $state(false);
 
 	const left = [
-		{ href: '/#work', label: 'Work' },
+		{ href: '/#work', label: 'See the work' },
 		{ href: '/#how', label: 'How I ship' }
 	];
 	const right = [
@@ -14,9 +14,7 @@
 	];
 </script>
 
-<svelte:window onscroll={() => (scrolled = window.scrollY > 24)} />
-
-<header class:scrolled class:open>
+<header use:navSurface class:open>
 	<nav class="bar" aria-label="Main">
 		<ul class="side">
 			{#each left as l}<li><a href={l.href}>{l.label}</a></li>{/each}
@@ -45,13 +43,12 @@
 		position: sticky;
 		top: 0;
 		z-index: 50;
-		transition: background 0.3s ease, backdrop-filter 0.3s ease;
+		background: var(--nav-surface, #efe6da);
+		color: var(--nav-ink, var(--ink));
+		transition: background-color 180ms ease, color 180ms ease;
 	}
-	header.scrolled,
 	header.open {
-		background: rgba(135, 113, 94, 0.92);
-		backdrop-filter: blur(10px);
-		color: var(--white);
+		background: var(--nav-surface, var(--paper));
 	}
 	.bar {
 		width: var(--wrap);
@@ -102,8 +99,8 @@
 		display: none;
 		justify-self: end;
 		font: 600 15px var(--body);
-		background: var(--ink);
-		color: var(--white);
+		background: var(--nav-ink, var(--ink));
+		color: var(--nav-surface, var(--white));
 		border: 0;
 		border-radius: 999px;
 		padding: 10px 18px;

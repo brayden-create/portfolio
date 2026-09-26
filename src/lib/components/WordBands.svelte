@@ -1,17 +1,18 @@
 <!-- Full-bleed stacked verbs, one colored band each, echoing the "WIGGLE / PLAY / GROOVE" run on nexplayground.com. -->
 <script lang="ts">
+	import { motion } from '$lib/motion';
 	const words = [
-		{ w: 'Scope', bg: 'var(--green)', note: 'Find the real ask behind the request' },
-		{ w: 'Build', bg: 'var(--teal-deep)', note: 'Components, content model, then pages' },
-		{ w: 'Ship', bg: 'var(--violet)', note: 'Deploy, then smoke-test production' },
-		{ w: 'Measure', bg: 'var(--coral)', note: 'LCP, INP, CLS, and what editors feel' },
-		{ w: 'Fix', bg: 'var(--tan)', note: 'Root cause first, then a check so it stays fixed' }
+		{ w: 'Scope', bg: 'var(--green)', note: 'Start with what someone needs' },
+		{ w: 'Build', bg: 'var(--teal-deep)', note: 'Make something they can try' },
+		{ w: 'Ship', bg: 'var(--violet)', note: 'Put it live and check it works' },
+		{ w: 'Measure', bg: 'var(--coral)', note: 'See where people get stuck' },
+		{ w: 'Fix', bg: 'var(--tan)', note: 'Keep making it better' }
 	];
 </script>
 
 <section class="bands" aria-label="How a project moves">
 	{#each words as b, i}
-		<div class="band" style="background:{b.bg}">
+		<div use:motion class="band" style="background:{b.bg}">
 			<div class="row">
 				<h2 class="display">{b.w}</h2>
 				<p><span>{String(i + 1).padStart(2, '0')}</span>{b.note}</p>
@@ -21,6 +22,10 @@
 </section>
 
 <style>
+	@media (prefers-reduced-motion: no-preference) {
+		.band h2 { transform: translateX(calc((var(--travel, .5) - .5) * 100px)); }
+		.band:nth-child(even) h2 { transform: translateX(calc((.5 - var(--travel, .5)) * 100px)); }
+	}
 	.band {
 		color: var(--white);
 		overflow: hidden;

@@ -6,7 +6,9 @@ const banned = [/—/, /–/, /\bdelve\b/i, /\bseamless(ly)?\b/i, /\bleverag(e|i
 const walk = (d) => readdirSync(d).flatMap((f) => (statSync(join(d, f)).isDirectory() ? walk(join(d, f)) : [join(d, f)]));
 let hits = 0;
 for (const file of walk('src')) {
-	readFileSync(file, 'utf8').split('\n').forEach((line, i) => {
+	const text = readFileSync(file, 'utf8');
+	if (text.includes('scrub:ignore-file')) continue; // verbatim third-party/production copies
+	text.split('\n').forEach((line, i) => {
 		for (const re of banned) if (re.test(line)) { hits++; console.error(`${file}:${i + 1} ${re} :: ${line.trim().slice(0, 90)}`); }
 	});
 }

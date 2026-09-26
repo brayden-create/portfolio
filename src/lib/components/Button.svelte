@@ -30,6 +30,9 @@
 		min-height: 54px;
 		transition: transform 0.15s ease;
 	}
+	.arrow svg { transition: transform 300ms cubic-bezier(.2,.8,.2,1); }
+	.btn:hover .arrow svg, .btn:focus-visible .arrow svg { transform: translateX(5px); }
+	.btn:active { scale: .97; }
 	.btn:hover {
 		transform: translateY(-2px);
 	}

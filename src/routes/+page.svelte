@@ -1,4 +1,7 @@
 <script lang="ts">
+	import '$lib/scroll-scenes.css';
+	import { scrollScene } from '$lib/scrollScene';
+	import { motion } from '$lib/motion';
 	import Button from '$lib/components/Button.svelte';
 	import Cube from '$lib/components/Cube.svelte';
 	import ProjectCard from '$lib/components/ProjectCard.svelte';
@@ -6,22 +9,10 @@
 	import { projects } from '$lib/data/projects';
 
 	const principles = [
-		{
-			t: 'Guardrails before magic',
-			d: 'Anything a non-engineer can trigger gets server-side validation, reversible deletes and an activity log. The model or the editor is never the security boundary.'
-		},
-		{
-			t: 'Measure, don’t guess',
-			d: 'Core Web Vitals, live DOM measurements at real breakpoints, and Search Console data decide what gets fixed next.'
-		},
-		{
-			t: 'Checks that block the build',
-			d: 'If a mistake can happen twice, a check goes into the build that fails it. Validators, copy linting and tests all block the deploy.'
-		},
-		{
-			t: 'I can explain every line',
-			d: 'I build with Claude Code every day. I read and question what it writes, and I push back when it’s wrong.'
-		}
+		{ t: 'Make changes safe', d: 'A business owner should be able to update a page without worrying about breaking the site. In the CMS, I validate changes on the server, ask before deleting, and keep an activity log.' },
+		{ t: 'Find out what happened', d: 'I like the troubleshooting part. A broken layout, a blocked request, a page Google indexed twice: I want to understand the cause before changing things.' },
+		{ t: 'Leave a useful check behind', d: 'When I keep running into the same mistake, I look for a way to catch it automatically. That has led to build checks, validators and a Vitest suite for my call-dispatch tool.' },
+		{ t: 'Use AI. Ask questions.', d: 'Claude Code is part of how I build. I still have to understand the result, test it and deal with it when something goes wrong.' }
 	];
 </script>
 
@@ -33,50 +24,72 @@
 	/>
 </svelte:head>
 
-<section class="hero">
+<section class="hero" use:motion use:scrollScene>
 	<div class="wrap">
-		<h1 class="display">What happened to the small-business website?</h1>
-		<p class="lede">Slow pages, stale content, and owners locked out of their own site. I’ve been fixing that.</p>
+		<p class="eyebrow intro">BRAYDEN GREGERSEN · FRONTEND ENGINEER</p>
+		<h1 class="display"><span>I build sites</span><span>people can</span><span><em>actually run.</em></span></h1>
+		<p class="lede">I build marketing sites and the systems behind them. Frontend, CMS tooling, integrations, analytics and the guardrails that keep changes safe.</p>
+		<p class="hero-note">Usually because someone said, “There has to be an easier way.”</p>
 		<Button href="#work" label="See the work" />
 	</div>
 	<div class="hero-art" aria-hidden="true">
 		<div class="win w1"><i></i><i></i><i></i><b style="width:70%"></b><b style="width:45%"></b></div>
-		<div class="win w2"><span>LCP ✓ fast</span><span>CLS ✓ stable</span><span>INP ✓ snappy</span></div>
-		<div class="win w3"><em>“Change the hours to 9 to 5 on Saturday.”</em><strong>✓ Draft updated, logged</strong></div>
+		<div class="win w2"><span>Websites.</span><span>Tools.</span><span>Less busywork.</span></div>
+		<div class="win w3"><em>“Change the hours to 9 to 5 on Saturday.”</em><strong>✓ Change saved to activity log</strong></div>
 	</div>
 	<svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
-		<path d="M0 60 L1440 0 V90 H0Z" fill="var(--teal)" />
+		<path d="M0 60 L1440 0 V90 H0Z" fill="var(--mint)" />
 	</svg>
 </section>
 
-<section class="meet">
-	<div class="wrap meet-grid">
-		<div>
-			<h2 class="display">Meet<br />Brayden</h2>
-			<p>
-				I build and run production marketing sites end to end, from content modeling and components
-				through deployment, performance and the tools people use to update them. Most of it runs on
-				Cloudflare in strict TypeScript.
-			</p>
-			<p>
-				For nine years I’ve worked as a maintenance technician on an injection-molding floor, where
-				downtime costs money by the minute. I bring the same habits to software: find the root cause,
-				check the fix under real load, and add a check so it stays fixed.
-			</p>
-		</div>
-		<Cube size={200} />
+<section class="why-nex" use:motion>
+	<div class="wrap why-grid">
+		<div><p class="eyebrow">Why Nex</p><h2 class="display">We already have one<br />in our living room.</h2></div>
+		<div><p>I have two boys, and our family owns and regularly uses Nex Playground.</p><p>So when I saw an engineering opening at Nex, I paid attention.</p></div>
 	</div>
 </section>
 
-<section class="one">
+<section class="meet" use:scrollScene>
+	<div class="wrap meet-grid">
+		<div>
+			<h2 class="display">From machines<br />to software.</h2>
+			<p>I've spent nine years troubleshooting production equipment, where a bad diagnosis means more downtime and another trip back to the same machine.</p>
+			<p>In 2023, I started studying software development at Southwest Applied Technology College, focused on Java. I spent about a year and a half in the program.</p>
+			<p>Then I started building.</p>
+			<p>That became PL Pages in 2024.</p>
+			<p>Today I build production marketing sites and business systems for small companies, usually as the only engineer involved. That means I end up owning a lot of the path: frontend, content structure, APIs, deployment, analytics, CMS tooling and the production problems that show up afterward.</p>
+			<p>The tools changed.</p>
+			<p>The way I work didn't.</p>
+			<p>Find the real problem. Understand why it happened. Build the fix. Test it under real conditions. Leave the system better than you found it.</p>
+		</div>
+		<div class="background-art"><Cube size={200} /></div>
+	</div>
+</section>
+
+<section id="why-now" class="career-move">
+	<div class="wrap move-grid">
+		<div use:motion>
+			<p class="eyebrow">Why now</p>
+			<h2 class="display">I wasn't looking<br />for an exit.</h2>
+		</div>
+		<div class="move-story" use:motion>
+			<p>I checked out the role because my family already knew Nex. I kept reading because the work sounded like the direction I've been moving toward on my own.</p>
+			<p>I've spent the last few years learning software and building sites, tools and systems outside my full-time job.</p>
+			<p class="move-heart"><strong>I'm not trying to get away from what I do now. I'm trying to get closer to what I want to get really good at.</strong></p>
+			<p>Getting to do that full time, for a product my family already uses, makes this one different.</p>
+		</div>
+	</div>
+</section>
+
+<section class="one" use:motion use:scrollScene>
 	<div class="wrap">
-		<h2 class="display">One little<br />portfolio.</h2>
-		<p>Real projects for real businesses, most of them live today. Open any card to see what made it hard.</p>
+		<h2 class="display"><span>Here’s what</span><span>I’ve built.</span></h2>
+		<p>Client websites, a simpler way to edit them, and tools I built when the existing ones didn’t fit. Each project has a story behind it.</p>
 	</div>
 </section>
 
 <section id="work" class="work">
-	<div class="wrap cards">
+	<div class="wrap project-list">
 		{#each projects as p, i (p.slug)}
 			<ProjectCard project={p} index={i} />
 		{/each}
@@ -85,9 +98,9 @@
 
 <WordBands />
 
-<section id="how" class="how">
+<section id="how" class="how" use:motion>
 	<div class="wrap">
-		<h2 class="display">Quality is built right in</h2>
+		<h2 class="display">What I’ve learned<br />along the way</h2>
 		<ol>
 			{#each principles as p, i}
 				<li>
@@ -99,15 +112,14 @@
 	</div>
 </section>
 
-<section class="family">
+<section class="family" use:motion use:scrollScene>
 	<div class="wrap fam-grid">
 		<img src="/family.jpg" alt="Brayden with his partner and two young sons" width="960" height="960" loading="lazy" />
 		<div>
-			<span class="eyebrow">Why this matters to me</span>
-			<h2 class="display">Built by a dad of two.</h2>
+			<span class="eyebrow">Away from the keyboard</span>
+			<h2 class="display">And then there<br />are these two.</h2>
 			<p>
-				Screens usually pull my boys onto the couch. I’d love to spend my days on a product that gets
-				them off it, and on the website that makes families want to try it.
+				These are the two behind the Nex connection. It would mean a lot to help build the web experience for a product we already enjoy together.
 			</p>
 			<Button href="/resume/" label="Read the resume" tone="green" />
 		</div>
@@ -115,6 +127,37 @@
 </section>
 
 <style>
+	.career-move { background: var(--green); color: var(--white); padding: 100px 0; scroll-margin-top: 84px; }
+	.move-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 70px; align-items: start; }
+	.career-move .eyebrow { color: var(--mint); margin: 0 0 24px; }
+	.career-move h2 { font-size: clamp(42px, 5.5vw, 72px); line-height: .98; }
+	.move-story p { max-width: 50ch; margin: 0 0 22px; }
+	.move-story p:last-child { margin-bottom: 0; }
+	.move-story .move-heart { font-size: clamp(23px, 2.2vw, 29px); line-height: 1.4; color: var(--white); margin-block: 30px; }
+	@media (max-width: 860px) { .career-move { padding: 64px 0; } .move-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; } }
+
+	.hero-note { max-width: 46ch; margin: 0 auto 28px; }
+	.why-nex { background: var(--mint); padding: 84px 0; }
+	.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+	.why-nex h2 { font-size: clamp(40px, 5vw, 64px); margin-top: 20px; }
+	.why-nex p { max-width: 48ch; }
+	@media (max-width: 860px) { .why-grid { grid-template-columns: 1fr; gap: 20px; } }
+	.intro { margin-bottom: 28px; color: var(--green); }
+	.hero h1 span { display: block; }
+	.hero h1 em { font-style: normal; color: var(--green); display: inline-block; }
+	@media (prefers-reduced-motion: no-preference) {
+		.hero h1 span { animation: headline-in 850ms cubic-bezier(.16,1,.3,1) both; }
+		.hero h1 span:nth-child(2) { animation-delay: 140ms; }
+		.hero .lede { animation: headline-in 850ms 250ms both; }
+		.win { animation: float 5s ease-in-out infinite alternate; }
+		.w2 { animation-delay: -2s; }
+		.w3 { animation-delay: -4s; }
+		.hero h1 em { animation: hello 1.2s 650ms both; }
+		.fam-grid img { transform: rotate(calc(-3deg + var(--travel, 0) * 5deg)); }
+	}
+	@keyframes headline-in { from { opacity: 0; transform: translateY(65px) rotate(3deg); } to { opacity: 1; transform: none; } }
+	@keyframes hello { 0%,100% { rotate: 0deg; } 35% { rotate: -7deg; } 70% { rotate: 3deg; } }
+	@keyframes float { from { transform: translateY(-9px); } to { transform: translateY(12px); } }
 	/* Hero */
 	.hero {
 		position: relative;
@@ -125,14 +168,14 @@
 		text-align: center;
 	}
 	.hero h1 {
-		font-size: clamp(44px, 8vw, 104px);
-		max-width: 12ch;
+		font-size: clamp(44px, 7vw, 88px);
+		max-width: 16ch;
 		margin-inline: auto;
 	}
 	.lede {
 		font-size: clamp(18px, 2vw, 21px);
-		max-width: 34ch;
-		margin: 22px auto 34px;
+		max-width: 48ch;
+		margin: 22px auto 20px;
 	}
 	.hero-art {
 		position: relative;
@@ -229,9 +272,10 @@
 	}
 	.meet h2 {
 		color: var(--white);
-		font-size: clamp(56px, 8vw, 110px);
+		font-size: clamp(48px, 6vw, 80px);
 		margin-bottom: 24px;
 	}
+	.background-art { position: sticky; top: 160px; align-self: start; padding-top: 50px; }
 	.meet p {
 		max-width: 56ch;
 		font-size: 18px;
@@ -256,10 +300,10 @@
 	.work {
 		padding: 50px 0 120px;
 	}
-	.cards {
+	.project-list {
 		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 20px;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 72px;
 	}
 
 	/* How */
@@ -323,16 +367,17 @@
 	@media (max-width: 860px) {
 		.meet-grid,
 		.fam-grid,
-		.cards,
+		.project-list,
 		.how ol {
 			grid-template-columns: minmax(0, 1fr);
 		}
+		.background-art { position: static; padding-top: 0; }
 		.hero {
 			margin-top: -68px;
 			padding: 120px 0 120px;
 		}
 		.hero-art {
-			height: 230px;
+			height: 310px;
 		}
 		.w1 {
 			left: 0;

@@ -1,162 +1,179 @@
 <script lang="ts">
+	import { motion } from '$lib/motion';
+	import SceneStage from '$lib/scenes/SceneStage.svelte';
 	import type { Project } from '$lib/data/projects';
-
 	let { project, index }: { project: Project; index: number } = $props();
+
+	// Buttons on the scene frame: the demo first (it's interactive), then the real site.
+	const links = $derived(
+		[
+			project.demo && { href: project.demo.href, label: project.demo.label, external: false },
+			project.link && { href: project.link.href, label: project.link.label, external: true }
+		].filter(Boolean) as { href: string; label: string; external: boolean }[]
+	);
 </script>
 
-<article class="card {project.tone}" class:featured={project.featured} id={project.slug}>
-	<header>
-		<span class="num">{String(index + 1).padStart(2, '0')}</span>
-		<span class="eyebrow">{project.kicker}</span>
+<article class="project" id={project.slug}>
+	<header class="head">
+		<span class="project-number">{String(index + 1).padStart(2, '0')}</span>
+		<div class="title-block">
+			<span class="eyebrow">{project.kicker}</span>
+			<h3 class="display">{project.title}</h3>
+			<details class="more">
+				<summary><span>Learn more</span><i aria-hidden="true">▾</i></summary>
+				<div class="information">
+					<div>
+						<p class="description">{project.summary}</p>
+						<h4>What made it possible</h4>
+						<p>{project.hard}</p>
+					</div>
+					<div>
+						<h4>Built with</h4>
+						<ul class="stack">{#each project.stack as item}<li>{item}</li>{/each}</ul>
+						{#if project.note}<p class="note">{project.note}</p>{/if}
+					</div>
+				</div>
+			</details>
+		</div>
 	</header>
-	<h3 class="display">{project.title}</h3>
-	<p class="summary">{project.summary}</p>
-
-	<details>
-		<summary>What made it hard</summary>
-		<p>{project.hard}</p>
-	</details>
-
-	<ul class="stack" aria-label="Stack">
-		{#each project.stack as s}<li>{s}</li>{/each}
-	</ul>
-
-	<footer>
-		{#if project.link}
-			<a href={project.link.href} target="_blank" rel="noopener">{project.link.label} ↗</a>
-		{/if}
-		{#if project.note}<small>{project.note}</small>{/if}
-	</footer>
+	<div class="demo-reveal" use:motion>
+		<SceneStage slug={project.slug} title={project.title} {links} note={links.length ? '' : project.note ?? ''} />
+	</div>
 </article>
 
 <style>
-	.card {
-		--bg: var(--white);
-		--fg: var(--ink);
-		--chip: rgba(39, 28, 19, 0.08);
-		background: var(--bg);
-		color: var(--fg);
-		border-radius: var(--radius);
-		padding: 28px 28px 24px;
+	.project {
+		min-width: 0;
+		scroll-margin-top: 100px;
+	}
+	.head {
 		display: flex;
-		flex-direction: column;
-		gap: 14px;
+		gap: 24px;
+		padding: 22px 0 25px;
+		border-top: 1px solid #271c1340;
+	}
+	.project-number {
+		font: 500 13px var(--mono);
+		padding-top: 4px;
+		color: var(--green);
+	}
+	.title-block {
+		flex: 1;
 		min-width: 0;
 	}
-	.featured {
-		grid-column: span 2;
-	}
-	.green {
-		--bg: var(--green);
-		--fg: var(--white);
-		--chip: rgba(255, 255, 255, 0.16);
-	}
-	.teal {
-		--bg: var(--teal);
-		--fg: var(--ink);
-	}
-	.coral {
-		--bg: var(--coral);
-		--fg: var(--white);
-		--chip: rgba(255, 255, 255, 0.2);
-	}
-	.ink {
-		--bg: var(--ink);
-		--fg: var(--paper);
-		--chip: rgba(255, 255, 255, 0.12);
-	}
-	.violet {
-		--bg: var(--violet);
-		--fg: var(--white);
-		--chip: rgba(255, 255, 255, 0.18);
-	}
-	.tan {
-		--bg: var(--tan);
-		--fg: var(--white);
-		--chip: rgba(255, 255, 255, 0.18);
-	}
-	header {
-		display: flex;
-		justify-content: space-between;
-		align-items: baseline;
-		gap: 12px;
-	}
-	.num {
-		font: 500 14px var(--mono);
-		opacity: 0.75;
+	.eyebrow {
+		display: block;
+		margin-bottom: 12px;
+		font-size: 10px;
+		color: var(--green);
 	}
 	h3 {
-		font-size: clamp(30px, 4vw, 46px);
-	}
-	.summary {
-		margin: 0;
-		max-width: 62ch;
-	}
-	details {
-		border-top: 1.5px solid currentColor;
-		border-color: color-mix(in srgb, currentColor 30%, transparent);
-		padding-top: 12px;
+		font-size: clamp(27px, 4vw, 48px);
+		line-height: 1.02;
+		text-wrap: initial;
 	}
 	summary {
-		cursor: pointer;
-		font-weight: 700;
-		list-style: none;
-		display: flex;
-		justify-content: space-between;
-		min-height: 28px;
+		display: inline-flex;
 		align-items: center;
+		gap: 8px;
+		margin-top: 14px;
+		min-height: 44px;
+		padding: 0 16px;
+		border: 1.5px solid var(--green);
+		border-radius: 999px;
+		color: var(--green);
+		font: 700 14px var(--body);
+		cursor: pointer;
+		list-style: none;
+		transition: background 0.2s, color 0.2s;
 	}
 	summary::-webkit-details-marker {
 		display: none;
 	}
-	summary::after {
-		content: '+';
-		font: 900 24px/1 var(--display);
-		transition: rotate 0.2s ease;
+	summary:hover,
+	.more[open] summary {
+		background: var(--green);
+		color: #fff;
 	}
-	details[open] summary::after {
-		rotate: 45deg;
+	summary i {
+		font-style: normal;
+		transition: rotate 0.3s;
 	}
-	details p {
-		margin: 10px 0 0;
-		max-width: 66ch;
+	.more[open] summary i {
+		rotate: 180deg;
+	}
+	summary:focus-visible {
+		outline: 3px solid var(--violet);
+		outline-offset: 4px;
+	}
+	.information {
+		display: grid;
+		grid-template-columns: 1.6fr 1fr;
+		gap: 50px;
+		padding: 22px 0 6px;
+		animation: open 0.35s ease both;
+	}
+	.information p {
+		font-size: 14px;
+		line-height: 1.8;
+		margin: 0 0 22px;
+	}
+	.information .description {
+		font-size: 17px;
+	}
+	h4 {
+		font-size: 12px;
+		text-transform: uppercase;
+		letter-spacing: 0.07em;
+		color: var(--green);
+		margin: 0 0 12px;
 	}
 	.stack {
 		display: flex;
+		gap: 7px;
 		flex-wrap: wrap;
-		gap: 6px;
 		list-style: none;
 		padding: 0;
-		margin: 4px 0 0;
+		margin: 0 0 25px;
 	}
 	.stack li {
-		background: var(--chip);
-		font: 500 12.5px/1 var(--mono);
+		background: var(--mint);
+		font: 500 11px var(--mono);
 		padding: 7px 10px;
-		border-radius: 999px;
+		border-radius: 30px;
 	}
-	footer {
-		margin-top: auto;
-		display: flex;
-		flex-wrap: wrap;
-		gap: 6px 16px;
-		align-items: baseline;
+	.note {
+		font-size: 12px !important;
 	}
-	footer a {
-		font-weight: 700;
-		text-underline-offset: 4px;
-		padding-block: 4px;
+	@keyframes open {
+		from { opacity: 0; transform: translateY(-6px); }
+		to { opacity: 1; transform: none; }
 	}
-	small {
-		opacity: 0.8;
-		font-size: 13.5px;
-	}
-	@media (max-width: 860px) {
-		.featured {
-			grid-column: auto;
+	@media (max-width: 700px) {
+		.head {
+			gap: 12px;
 		}
-		.card {
-			padding: 22px 20px 20px;
+		.project-number {
+			font-size: 10px;
+		}
+		.eyebrow {
+			font-size: 9px;
+			margin-bottom: 9px;
+		}
+		h3 {
+			font-size: 26px;
+		}
+		.information {
+			grid-template-columns: 1fr;
+			gap: 18px;
+		}
+		.information .description {
+			font-size: 16px;
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.information {
+			animation: none;
 		}
 	}
 </style>

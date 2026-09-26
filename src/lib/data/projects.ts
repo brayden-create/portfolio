@@ -12,6 +12,7 @@ export interface Project {
 	hard: string;
 	stack: string[];
 	link?: { href: string; label: string };
+	demo?: { href: string; label: string };
 	note?: string;
 	featured?: boolean;
 }
@@ -24,24 +25,26 @@ export const projects: Project[] = [
 		tone: 'green',
 		featured: true,
 		summary:
-			'A range owner types what he wants changed in plain English. A Cloudflare Worker runs a Claude tool loop that turns the request into WordPress REST calls, so he never opens WP admin. It has three tabs: Chat, Activity Log and a recurring Checklist.',
+			'I built this so a range owner could change his website by asking, instead of digging through WordPress. He can update content, see what changed, and keep track of recurring jobs in one place.',
 		hard:
 			"The model is never the security boundary. Every write goes through a server-side validator (scoped CSS only, no scripts or iframes, embed allowlist), deletes can only go to trash and need an explicit confirmation, and the endpoint list is structural, so pages, posts and media are the only things it can reach. The host's bot wall then blocked the Worker's rotating IPs. I proved it with a matched test (same request, only the source IP differed), routed traffic through a small static-IP proxy, and got that IP allowlisted.",
 		stack: ['Cloudflare Workers', 'Anthropic tool use', 'WordPress REST', 'Cloudflare Access', 'Airtable'],
-		link: { href: 'https://bravelizard.com', label: 'bravelizard.com' }
+		demo: { href: '/demos/chat-cms/', label: 'Try the demo' },
+		link: { href: 'https://bravelizard.com', label: 'Visit bravelizard.com' }
 	},
 	{
 		slug: 'clearpoint',
-		title: 'Counter-drone marketing site',
+		title: 'Chat CMS, redeployed',
 		kicker: 'ClearPoint Aero',
 		tone: 'ink',
 		featured: true,
 		summary:
-			'A 7-page site for a counter-drone company, built as a small component system: shared header, nav, FAQ, breadcrumb and CTA partials, with JSON-LD generated from the same data as the markup so the two cannot drift.',
+			'A second client, a counter-drone company, wanted the same plain-English CMS. I copied the Brave Lizard build, rebranded it, pointed it at their WordPress theme and rewrote the assistant for their business. Kickoff to a deployed CMS took about two days, half the time of the original.',
 		hard:
-			"The client's CMS strips every script, so the mega-nav, a five-step process explorer and the mobile menu work with CSS alone, using :has(), native <details> and grid-row animation, with a plain-link fallback. A flex-basis bug bit twice. When a row stacks into a column, flex-basis starts sizing height, which left image wells 0px wide. I checked it with live DOM measurements at 360 to 1440px and made sure every page cleared WCAG AA contrast.",
-		stack: ['HTML', 'Modern CSS', 'Python build', 'JSON-LD', 'Cloudflare Pages Functions'],
-		note: 'Private client preview behind a server-side password gate. Walkthrough on request.'
+			'Reusing code without sharing anything else. The auth, routing and validator carried over almost untouched, but every piece of infrastructure is new: its own Airtable base with a token scoped to it, a capped Anthropic key, a static-IP proxy for the host firewall and Google SSO for two people. I caught the Airtable token over-scoped during setup, and the other bases now return 403.',
+		stack: ['Cloudflare Workers', 'Anthropic tool use', 'WordPress REST (Avada)', 'Railway proxy', 'Cloudflare Access', 'Airtable'],
+		note: 'ClearPoint’s CMS sits behind their SSO. The demo runs the same code.',
+		demo: { href: '/demos/chat-cms/', label: 'Try the CMS demo' }
 	},
 	{
 		slug: 'seo-pipeline',
@@ -50,11 +53,12 @@ export const projects: Project[] = [
 		tone: 'teal',
 		featured: true,
 		summary:
-			'Five Workers stages: Collector, Analyst, Planner, Verifier and Doer. They pull DataForSEO, PageSpeed (LCP, INP, CLS) and Search Console data, write findings and severity-ranked action items to Airtable, and draft pages that publish only after a human clicks Approve on a dashboard.',
+			'I wanted one place to see what needed attention across client sites. This collects search and performance data, checks the findings, and drafts changes for a person to review before anything gets published.',
 		hard:
 			'Keeping it honest. Each action item has to link back to a finding, and the Verifier stage writes a pass or flag verdict with grounding notes before anything reaches the approve queue.',
 		stack: ['TypeScript', 'Cloudflare Workers', 'Cloudflare Pages', 'Airtable', 'DataForSEO', 'PageSpeed API', 'GSC'],
-		note: 'Internal tool behind SSO.'
+		demo: { href: '/demos/seo-ops/', label: 'Try the demo' },
+		note: 'Internal tool behind SSO. The demo uses made-up data.'
 	},
 	{
 		slug: 'ops-tasks',
@@ -62,22 +66,23 @@ export const projects: Project[] = [
 		kicker: 'Personal tool',
 		tone: 'green',
 		summary:
-			'A mobile task app built in Next.js 14 and React. You type a rough idea, an agent turns it into structured tasks, and the app installs to the home screen.',
+			'I built a small task app for turning a rough idea into a list I can work through. It uses Next.js and React, and installs on a phone like an app.',
 		hard:
 			'Model output is never trusted as state. Replies end in fenced JSON blocks that the client parses, checks field by field against enums and then applies. The API key stays server side behind an edge route, and I got next-on-pages running on Cloudflare after pinning around a version mismatch.',
-		stack: ['Next.js 14', 'React 18', 'Edge runtime', 'PWA / service worker', 'Cloudflare Pages']
+		stack: ['Next.js 14', 'React 18', 'Edge runtime', 'PWA / service worker', 'Cloudflare Pages'],
+		note: 'Personal app, no public login. Walkthrough on request.'
 	},
 	{
 		slug: 'kalama',
-		title: 'Wix to Cloudflare migration',
+		title: 'Editorial site for a design firm',
 		kicker: 'Kalama Silvas',
 		tone: 'tan',
 		summary:
-			'Rebuilt a hospitality design and procurement firm’s site as a static build on Cloudflare Pages, moved the domain off Wix with 301s for every old URL, and set up Search Console.',
+			'A quiet, editorial site for a hospitality interior design and procurement firm. It has a full-bleed hero that cross-fades between hotel projects, a full-screen serif menu, words and numbers that reveal as you scroll, a client logo marquee and a portfolio that reflows down to a phone.',
 		hard:
-			'After launch, a duplicate preview domain was fully indexed and an iframed brochure gave Google credit to the wrong URL. I found it with URL Inspection, then fixed it with noindex headers, a proper URL for the brochure, and a verified property so the removal would stick.',
-		stack: ['Cloudflare Pages', 'Static HTML/CSS', 'Search Console', 'Redirects'],
-		link: { href: 'https://kalamasilvas.com', label: 'kalamasilvas.com' }
+			'Making motion feel calm. Every reveal runs off an IntersectionObserver, the counters animate once, and the whole thing respects reduced motion. I moved it from Wix to Cloudflare Pages with 301s for every old URL, then found a duplicate preview domain indexed in Search Console and cleaned it up. Next up is performance: the hero serves 3200px photos with no srcset or lazy loading yet.',
+		stack: ['HTML', 'CSS animation', 'IntersectionObserver', 'Cloudflare Pages', 'Search Console'],
+		link: { href: 'https://kalamasilvas.com', label: 'Visit kalamasilvas.com' }
 	},
 	{
 		slug: 'vault-mcp',
@@ -85,10 +90,11 @@ export const projects: Project[] = [
 		kicker: 'SEO Ops',
 		tone: 'violet',
 		summary:
-			'An AES-GCM encrypted secrets vault on Workers KV with a remote MCP server in front, so AI tools can fetch a credential without me pasting it into chat.',
+			'I needed a way for my AI tools to use credentials without copying them into conversations. I built an encrypted vault with separate access for contractors.',
 		hard:
 			'Access is scoped by the password you use at the OAuth consent step. A contractor’s scope only sees secrets tagged for them (default deny, even for direct ID lookups). A new tier is one Worker secret, not a code change, and repeated bad passwords trigger an IP lockout.',
-		stack: ['Workers', 'KV', 'OAuth 2.1 / DCR', 'MCP', 'WebCrypto']
+		stack: ['Workers', 'KV', 'OAuth 2.1 / DCR', 'MCP', 'WebCrypto'],
+		note: 'Private infrastructure. Code walkthrough on request.'
 	},
 	{
 		slug: 'inbox',
@@ -96,10 +102,11 @@ export const projects: Project[] = [
 		kicker: 'Midnight Services',
 		tone: 'coral',
 		summary:
-			'Replaced a CRM’s conversations tab for a hauling company. Threads, web push, delivery status, lead assignment and one timeline of calls and texts, plus a ring chain that tries each person for 10 seconds before a voice screener picks up.',
+			'I built a shared inbox for a hauling company so calls and texts live together. The team can see who is handling a customer, and incoming calls try each person before going to a voice screener.',
 		hard:
 			'It exists to enforce one rule: never contact a lead twice. Whoever answers a call claims the thread without stealing an existing owner, and a banner shows who spoke to the customer and how long ago.',
-		stack: ['Workers', 'D1', 'Twilio', 'Web Push', 'ElevenLabs']
+		stack: ['Workers', 'D1', 'Twilio', 'Web Push', 'ElevenLabs'],
+		note: 'Client tool behind a login. Walkthrough on request.'
 	},
 	{
 		slug: 'crew',
@@ -107,11 +114,11 @@ export const projects: Project[] = [
 		kicker: 'The Learner',
 		tone: 'ink',
 		summary:
-			'A self-hosted console for named AI agents that I can DM, pull into group chats, send off on background tasks or schedule on cron.',
+			'This is where I manage the AI agents I use for work. I can message them, bring them into a group conversation, or give them a scheduled job.',
 		hard:
 			'Long jobs survive failures. Each step checkpoints to D1, stale leases get requeued, and the cron pass repairs jobs that a database hiccup dropped. It has zero npm dependencies.',
 		stack: ['Workers', 'D1', 'Cron Triggers', 'Anthropic API'],
-		link: { href: 'https://crew.plpages.com', label: 'crew.plpages.com (login)' }
+		link: { href: 'https://crew.plpages.com', label: 'Open Crew (login)' }
 	},
 	{
 		slug: 'outbound',
@@ -119,10 +126,11 @@ export const projects: Project[] = [
 		kicker: 'PL Pages',
 		tone: 'teal',
 		summary:
-			'Outbound call dispatch with signed webhooks, calling-window and attempt-limit gating, a concurrency cap, and Airtable sync every 5 minutes.',
+			'I built the service that decides when an outbound call can happen. It checks calling hours, attempt limits and how many calls are already running, then keeps Airtable up to date.',
 		hard:
-			'The webhooks use HMAC with replay protection, so a captured request cannot be sent again, and a 40-test Vitest suite covers the gating logic.',
-		stack: ['TypeScript', 'Workers', 'D1', 'Vitest']
+			'The post-call webhook is HMAC-signed. Stale timestamps are rejected as replays and redeliveries are processed once. A 40-test Vitest suite covers signatures, dispatch gating, do-not-call suppression and CRM updates.',
+		stack: ['JavaScript', 'Workers', 'D1', 'ElevenLabs', 'Vitest'],
+		note: 'Backend service with no public UI. Code walkthrough on request.'
 	},
 	{
 		slug: 'this-site',
@@ -131,7 +139,7 @@ export const projects: Project[] = [
 		tone: 'coral',
 		featured: true,
 		summary:
-			'SvelteKit on Cloudflare Pages. It has a typed content model, a small component set, a CSS-only 3D cube, and a resume route with a print stylesheet so the PDF comes from the same source.',
+			'I built this portfolio in SvelteKit for the Nex application. I liked the movement and color on their site, and wanted to try that approach with my own work. The resume has its own print layout.',
 		hard:
 			'The design takes cues from nexplayground.com, rebuilt from scratch on open-source fonts.',
 		stack: ['SvelteKit', 'Svelte 5 runes', 'TypeScript', 'Cloudflare Pages'],

@@ -1,0 +1,33 @@
+/* Scroll choreography is separate from project content and demo components. */
+@media screen and (min-width: 861px) and (prefers-reduced-motion: no-preference) {
+ .meet.scroll-enabled { height: auto; padding: 80px 0; position: relative; }
+ .meet.scroll-enabled .meet-grid { position: relative; min-height: 0; align-items: start; padding-block: 0; }
+
+ .meet.scroll-enabled h2 { transform-origin: left center; transform: none; }
+ .meet.scroll-enabled .scene { transform: translateX(calc((1 - var(--scene, 0)) * 80px)) rotate(calc(-12deg + var(--scene, 0) * 24deg)) scale(calc(.8 + var(--scene, 0) * .65)); }
+ .meet.scroll-enabled { background: color-mix(in srgb, var(--teal), var(--mint) calc(var(--scene, 0) * 65%)); }
+ .hero.scroll-enabled .wrap { transform: translateY(calc(var(--scene, 0) * 65px)); }
+ .hero.scroll-enabled .hero-art { transform: none; }
+ .hero.scroll-enabled .w1 { margin-left: calc(var(--scene, 0) * -75px); rotate: calc(-4deg - var(--scene, 0) * 10deg); }
+ .hero.scroll-enabled .w3 { margin-right: calc(var(--scene, 0) * -75px); rotate: calc(3deg + var(--scene, 0) * 10deg); }
+ .one.scroll-enabled { overflow: clip; padding-block: 140px 70px; }
+ .one.scroll-enabled h2 { transform: scale(calc(.82 + var(--passage, .5) * .36)); }
+ .one.scroll-enabled h2 span { display: block; transform: translateX(calc((var(--passage, .5) - .5) * -220px)); }
+ .one.scroll-enabled h2 span:last-child { transform: translateX(calc((var(--passage, .5) - .5) * 220px)); }
+ .work .card.motion-ready { transform-origin: center bottom; transform: perspective(1400px) rotateX(calc((.5 - var(--travel, .5)) * 7deg)) scale(clamp(.96, calc(.94 + var(--travel, .5) * .12), 1)); }
+ .family.scroll-enabled .fam-grid > div { transform: translateY(calc((.5 - var(--passage, .5)) * 100px)); }
+ .family.scroll-enabled img { scale: calc(.93 + var(--passage, .5) * .14); }
+}
+@media screen and (max-width: 860px) and (prefers-reduced-motion: no-preference) {
+ .one.scroll-enabled h2 { transform: scale(calc(.94 + var(--passage, .5) * .1)); }
+ .meet.scroll-enabled .scene { transform: rotate(calc(-5deg + var(--passage, .5) * 10deg)); }
+}
+/* Pausing releases the sticky sequence so all content remains easy to read. */
+.motion-paused .scroll-enabled { --scene: .5 !important; --passage: .5 !important; }
+.motion-paused .meet.scroll-enabled { height: auto; }
+.motion-paused .meet.scroll-enabled .meet-grid { position: relative; top: auto; min-height: 0; }
+.motion-paused .work .card { transform: none !important; }
+@media print {
+ .meet.scroll-enabled { height: auto !important; }
+ .meet.scroll-enabled .meet-grid { position: static !important; min-height: 0 !important; }
+}

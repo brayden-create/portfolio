@@ -1,8 +1,8 @@
 <footer id="contact">
 	<div class="wrap grid">
 		<div>
-			<h2 class="display">Let’s build.</h2>
-			<p>Remote from Southern Utah. Open to full-time frontend roles.</p>
+			<h2 class="display">Say hello.</h2>
+			<p>I’m looking for a full-time frontend role with a team I can learn from and contribute to. Based in Southern Utah, working remotely.</p>
 		</div>
 		<ul>
 			<li><span class="eyebrow">Email</span><a href="mailto:brayden@plpages.com">brayden@plpages.com</a></li>

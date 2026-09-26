@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="theme-color" content="#0a0e14"/>
+<title>Brave Lizard Tactical · SEO Ops</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { background: #0a0e14; color: #e8e8e8; min-height: 100vh; }
+body { font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; padding-bottom: 140px; }
+.mono { font-family: 'JetBrains Mono', ui-monospace, monospace; letter-spacing: 0.02em; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font-family: inherit; outline: none; cursor: pointer; background: transparent; border: none; color: inherit; }
+
+.header { position: sticky; top: 0; z-index: 50; background: rgba(10,14,20,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 14px 20px; }
+.header-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1280px; margin: 0 auto; gap: 16px; flex-wrap: wrap; }
+.back { display: inline-flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #6b7280; letter-spacing: 0.12em; cursor: pointer; }
+.back:hover { color: #00FF94; }
+.last-updated { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #6b7280; letter-spacing: 0.1em; }
+.header-actions { display:flex; gap:10px; align-items:center; }
+
+.btn { border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 8px 14px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; transition: background 150ms ease, border-color 150ms ease; white-space: nowrap; }
+.btn:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.25); }
+.btn.primary { background: #00FF94; color: #0a0e14; border-color: #00FF94; font-weight: 700; }
+.btn.primary:hover { background: #5cffba; }
+.btn.danger { color: #ff6b6b; border-color: rgba(255,107,107,0.3); }
+.btn.danger:hover { background: rgba(255,107,107,0.08); }
+.btn.warn { color: #E5C100; border-color: rgba(229,193,0,0.3); }
+.btn.warn:hover { background: rgba(229,193,0,0.08); }
+.btn.tour { color: #bba1ff; border-color: rgba(187,161,255,0.4); }
+.btn.tour:hover { background: rgba(187,161,255,0.08); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.demo-strip { max-width:1280px; margin:14px auto 0; padding:0 24px; }
+.demo-strip-inner { background: rgba(187,161,255,0.06); border:1px solid rgba(187,161,255,0.25); border-radius:10px; padding:10px 16px; display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+.demo-strip-inner .t { font-family:'JetBrains Mono',monospace; font-size:10px; color:#cdbcff; letter-spacing:0.1em; }
+
+main { max-width: 1280px; margin: 0 auto; padding: 24px; display: flex; flex-direction: column; gap: 24px; }
+
+.site-hero { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 22px 24px; display: flex; flex-direction: column; gap: 14px; }
+.site-hero-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+.site-name { font-size: 28px; font-weight: 700; letter-spacing: -0.025em; }
+.site-meta-line { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #c5cad3; letter-spacing: 0.08em; margin-top: 4px; }
+.site-badges { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.site-links { display: flex; gap: 10px; flex-wrap: wrap; }
+.site-link { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 6px 10px; border: 1px solid rgba(255,255,255,0.12); border-radius: 5px; color: #c5cad3; letter-spacing: 0.1em; }
+.site-link:hover { color: #00FF94; border-color: rgba(0,255,148,0.3); }
+.site-stats-row { display: flex; gap: 24px; flex-wrap: wrap; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06); }
+.site-stat { display: flex; flex-direction: column; gap: 2px; }
+.site-stat-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #6b7280; letter-spacing: 0.16em; }
+.site-stat-value { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
+.site-stat-value.accent { color: #00FF94; }
+.site-stat-value.warn { color: #E5C100; }
+
+.badge { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; font-weight: 700; padding: 3px 8px; border-radius: 4px; border: 1px solid; white-space: nowrap; }
+.badge.active { color: #00FF94; border-color: rgba(0,255,148,0.3); background: rgba(0,255,148,0.08); }
+.badge.client { color: #8ab4ff; border-color: rgba(138,180,255,0.3); background: rgba(138,180,255,0.06); }
+
+.tabs { position: sticky; top: 52px; z-index: 40; background: rgba(10,14,20,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; margin: 0 -24px 16px; padding: 0 24px; }
+.tab { border-bottom: 2px solid transparent; color: #6b7280; padding: 14px 18px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 10px; }
+.tab:hover { color: #c5cad3; }
+.tab.active { color: #00FF94; border-bottom-color: #00FF94; }
+.tab-badge { background: rgba(255,255,255,0.08); color: #c5cad3; font-size: 10px; padding: 2px 7px; border-radius: 999px; font-weight: 700; }
+.tab.active .tab-badge { background: rgba(0,255,148,0.18); color: #00FF94; }
+.tab-badge.warn { background: rgba(229,193,0,0.18); color: #E5C100; }
+.tab-pane { display: none; }
+.tab-pane.active { display: flex; flex-direction: column; gap: 24px; }
+
+.action-bar { background: rgba(0,255,148,0.04); border: 1px solid rgba(0,255,148,0.15); border-radius: 12px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; }
+.action-bar-msg { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #c5cad3; letter-spacing: 0.1em; }
+.action-bar-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.group { display: flex; flex-direction: column; gap: 10px; }
+.group-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 4px; border-bottom: 1px solid rgba(255,255,255,0.06); margin-bottom: 4px; cursor: pointer; user-select: none; }
+.group-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; }
+.group-title .ct { color: #6b7280; margin-left: 8px; }
+.group.awaiting .group-title { color: #E5C100; }
+.group.approved .group-title { color: #00FF94; }
+.group.done .group-title { color: #c5cad3; }
+.group.draftReview .group-title { color: #bba1ff; }
+.group-actions { display: flex; gap: 6px; }
+.group-actions .btn { padding: 4px 10px; font-size: 10px; }
+.group-body { display: flex; flex-direction: column; gap: 8px; }
+.group.collapsed .group-body { display: none; }
+
+.item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 14px 16px; display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: start; transition: border-color 150ms ease, background 150ms ease; }
+.item.selected { border-color: rgba(0,255,148,0.4); background: rgba(0,255,148,0.04); }
+.item-check { display: flex; align-items: center; padding-top: 2px; }
+.item-check input { width: 16px; height: 16px; accent-color: #00FF94; cursor: pointer; }
+.item-body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.item-title { font-size: 14px; font-weight: 600; line-height: 1.4; letter-spacing: -0.01em; }
+.item-desc { font-size: 12px; color: #c5cad3; line-height: 1.55; white-space: pre-wrap; }
+.item-meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #6b7280; letter-spacing: 0.1em; display: flex; gap: 10px; flex-wrap: wrap; margin-top: 2px; }
+.item-side { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.item-sev { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; }
+.sev-p0 { color: #ff6b6b; } .sev-p1 { color: #E5C100; } .sev-p2 { color: #6b7280; }
+.item-extra { background: rgba(0,0,0,0.4); border-radius: 6px; padding: 8px 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #c5cad3; line-height: 1.5; white-space: pre-wrap; margin-top: 4px; }
+
+.item.draft-review { display: block; padding: 16px 18px; border-color: rgba(187,161,255,0.3); background: rgba(187,161,255,0.04); }
+.draft-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; font-weight: 700; color: #bba1ff; margin: 12px 0 4px; }
+.draft-output { width: 100%; min-height: 120px; background: rgba(0,0,0,0.4); border: 1px solid rgba(187,161,255,0.2); color: #e8e8e8; padding: 10px 12px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 1.55; resize: vertical; }
+.draft-actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+
+.item-notes { margin-top: 8px; border-left: 2px solid rgba(229,193,0,0.5); background: rgba(229,193,0,0.06); border-radius: 0 6px 6px 0; padding: 8px 12px; display: flex; flex-direction: column; gap: 3px; }
+.item-notes-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #E5C100; letter-spacing: 0.18em; font-weight: 700; }
+.item-notes-body { font-size: 13px; color: #f0e6c4; line-height: 1.55; white-space: pre-wrap; cursor: text; }
+.item-notes-body.empty { color: #6b7280; font-style: italic; font-size: 12px; }
+
+.audit-strip { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 8px; }
+.audit-card { flex: 0 0 280px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; }
+.audit-card .audit-id { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color:#00FF94; }
+.audit-card .audit-meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #6b7280; letter-spacing: 0.1em; display: flex; gap: 10px; flex-wrap: wrap; }
+.audit-card .audit-summary { font-size: 12px; color: #c5cad3; line-height: 1.5; }
+
+.empty { padding: 24px 16px; text-align: center; color: #6b7280; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; border: 1px dashed rgba(255,255,255,0.08); border-radius: 10px; }
+.spinner { display: inline-block; width: 12px; height: 12px; border: 2px solid rgba(0,255,148,0.2); border-top-color: #00FF94; border-radius: 50%; animation: spin 0.8s linear infinite; vertical-align: -2px; margin-right: 6px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: 24px; z-index: 100; background: #1a2030; border: 1px solid rgba(0,255,148,0.3); padding: 12px 18px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #00FF94; opacity: 0; pointer-events: none; transition: opacity 200ms ease, transform 200ms ease; }
+.toast.show { opacity: 1; transform: translate(-50%, -8px); }
+.toast.error { color: #ff6b6b; border-color: rgba(255,107,107,0.3); }
+.toast.warn { color: #E5C100; border-color: rgba(229,193,0,0.3); }
+
+.bulk-bar { position: fixed; left: 50%; transform: translateX(-50%) translateY(160%); bottom: 18px; z-index: 60; background: #0f141c; border: 1px solid rgba(0,255,148,0.3); border-radius: 12px; padding: 12px 16px; display: flex; gap: 12px; align-items: center; transition: transform 200ms ease; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+.bulk-bar.show { transform: translateX(-50%) translateY(0); }
+.bulk-bar-count { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: #00FF94; letter-spacing: 0.1em; }
+
+.gbp-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px 14px; display: grid; grid-template-columns: 70px 1fr auto; gap: 12px; align-items: stretch; cursor: pointer; }
+.gbp-card:hover { border-color: rgba(0,255,148,0.3); background: rgba(255,255,255,0.05); }
+.gbp-thumb { width: 70px; height: 70px; border-radius: 6px; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 18px; color: #6b7280; }
+.gbp-body-col { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.gbp-caption { font-size: 14px; font-weight: 600; line-height: 1.3; }
+.gbp-excerpt { font-size: 12px; color: #c5cad3; line-height: 1.45; }
+.gbp-meta { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #6b7280; letter-spacing: 0.1em; display: flex; gap: 8px; flex-wrap: wrap; }
+.gbp-side { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; min-width: 80px; }
+.gbp-cta-badge { font-family: 'JetBrains Mono', monospace; font-size: 9px; padding: 2px 6px; border-radius: 3px; letter-spacing: 0.1em; font-weight: 700; color: #c5cad3; border: 1px solid rgba(255,255,255,0.15); }
+
+.modal-backdrop { position: fixed; inset: 0; z-index: 80; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); display: none; align-items: flex-start; justify-content: center; padding: 24px; overflow-y:auto; }
+.modal-backdrop.show { display: flex; }
+.modal { background: #0f141c; border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 24px; max-width: 680px; width: 100%; display: flex; flex-direction: column; gap: 12px; margin:auto; }
+.gbp-field { display: flex; flex-direction: column; gap: 4px; }
+.gbp-field label { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #6b7280; letter-spacing: 0.16em; }
+.gbp-field input, .gbp-field select, .gbp-field textarea { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.15); color: #e8e8e8; padding: 8px 10px; border-radius: 6px; font-family: inherit; font-size: 13px; width: 100%; }
+.gbp-field textarea { line-height: 1.6; min-height: 120px; resize: vertical; }
+.gbp-cta-row { display: grid; grid-template-columns: 160px 1fr; gap: 10px; }
+.modal-foot { display: flex; gap: 10px; justify-content: flex-end; margin-top: 8px; flex-wrap:wrap; }
+
+.chat-inner { background: #11161f; border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; width: 640px; max-width: 94vw; height: 78vh; max-height: 720px; display: flex; flex-direction: column; margin:auto; }
+.chat-head { display: flex; align-items: flex-start; justify-content: space-between; padding: 16px 18px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.chat-title { font-size: 15px; font-weight: 700; max-width: 480px; }
+.chat-sub { font-size: 10px; color: #6b7280; margin-top: 4px; }
+.chat-thread { flex: 1; overflow-y: auto; padding: 16px 18px; display: flex; flex-direction: column; gap: 14px; }
+.chat-msg { max-width: 86%; font-size: 13px; line-height: 1.55; padding: 10px 13px; border-radius: 12px; white-space: pre-wrap; }
+.chat-msg.user { align-self: flex-end; background: rgba(0,255,148,0.12); border: 1px solid rgba(0,255,148,0.22); }
+.chat-msg.assistant { align-self: flex-start; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); }
+.chat-msg.assistant.plan { border-color: rgba(0,255,148,0.4); background: rgba(0,255,148,0.06); }
+.chat-tools { align-self: flex-start; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: #6b7280; display: flex; flex-direction: column; gap: 2px; padding-left: 4px; }
+.chat-tools span::before { content: '⚙ '; color: #5b9dff; }
+.chat-input-row { display: flex; gap: 8px; padding: 12px 18px; border-top: 1px solid rgba(255,255,255,0.08); }
+.chat-input-row textarea { flex: 1; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.15); color: #e8e8e8; border-radius: 8px; padding: 10px 12px; font-family: inherit; font-size: 13px; resize: none; }
+.chat-foot { display: flex; align-items: center; justify-content: space-between; padding: 10px 18px 14px; font-size: 10px; color: #6b7280; }
+
+.rd-summary { display: flex; align-items: center; gap: 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 18px 22px; flex-wrap: wrap; }
+.rd-summary-pct { font-size: 32px; font-weight: 700; line-height: 1; color:#00FF94; }
+.rd-summary-sub { font-size: 10px; color: #6b7280; margin-top: 6px; }
+.rd-bar { flex: 1; min-width: 160px; height: 8px; background: rgba(255,255,255,0.08); border-radius: 999px; overflow: hidden; }
+.rd-bar-fill { height: 100%; border-radius: 999px; background:#00FF94; }
+.rd-group { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 6px 14px 12px; }
+.rd-group-head { display: flex; align-items: center; justify-content: space-between; padding: 12px 0 8px; border-bottom: 1px solid rgba(255,255,255,0.06); margin-bottom: 6px; }
+.rd-group-name { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; font-weight: 700; color: #c5cad3; }
+.rd-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; font-size: 12.5px; border-bottom: 1px solid rgba(255,255,255,0.03); }
+.rd-ic { width: 16px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; }
+.rd-ic.ok { color: #00FF94; } .rd-ic.no { color: #ff6b6b; }
+.rd-label { flex: 1; }
+.rd-val { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #6b7280; }
+
+/* Walkthrough */
+.coach { position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%) translateY(180%); z-index: 130; width: 560px; max-width: 92vw; background: #14101f; border: 1px solid rgba(187,161,255,0.5); border-radius: 14px; padding: 16px 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.6); transition: transform 240ms ease; }
+.coach.show { transform: translateX(-50%) translateY(0); }
+.coach-step { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #bba1ff; letter-spacing: 0.18em; font-weight: 700; }
+.coach-title { font-size: 16px; font-weight: 700; margin: 6px 0 6px; }
+.coach-body { font-size: 13px; line-height: 1.6; color: #d8d2e8; }
+.coach-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; gap: 10px; }
+.coach-dots { display: flex; gap: 5px; }
+.coach-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.18); }
+.coach-dot.on { background: #bba1ff; }
+.glow { animation: glowpulse 1.2s ease-in-out infinite; border-radius: 12px; }
+@keyframes glowpulse { 0%,100% { box-shadow: 0 0 0 0 rgba(187,161,255,0.0); } 50% { box-shadow: 0 0 0 3px rgba(187,161,255,0.55); } }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a class="back" href="/#seo-pipeline"><span>‹ BACK TO PORTFOLIO</span></a>
+    <div class="header-actions">
+      <span class="last-updated" id="lastUpdated">UPDATED 9:14 AM</span>
+      <button class="btn tour" id="tourBtn"><span>▶ WALKTHROUGH</span></button>
+      <a class="btn" href="#"><span>VAULT</span></a>
+      <button class="btn" id="refreshBtn"><span>REFRESH</span></button>
+    </div>
+  </div>
+</header>
+
+<div class="demo-strip"><div class="demo-strip-inner">
+  <span class="t">DEMO ENVIRONMENT · FICTIONAL DATA · BUILT BY PL PAGES</span>
+  <button class="btn tour" id="tourBtn2" style="padding:5px 12px;"><span>▶ START WALKTHROUGH</span></button>
+</div></div>
+
+<main id="root"><div class="empty"><span class="spinner"></span>LOADING SITE</div></main>
+
+<div class="bulk-bar" id="bulkBar">
+  <span class="bulk-bar-count" id="bulkCount">0 SELECTED</span>
+  <button class="btn primary" id="bulkApprove"><span>APPROVE SELECTED</span></button>
+  <button class="btn danger" id="bulkReject"><span>REJECT</span></button>
+  <button class="btn" id="bulkClear"><span>CLEAR</span></button>
+</div>
+
+<div class="modal-backdrop" id="gbpModal"><div class="modal">
+  <div id="gbpModalImgWrap"></div>
+  <div class="gbp-field"><label>CAPTION</label><input type="text" id="gbpCap"/></div>
+  <div class="gbp-field"><label>BODY</label><textarea id="gbpBody"></textarea></div>
+  <div class="gbp-field"><label>IMAGE URL</label><input type="text" id="gbpImg"/></div>
+  <div class="gbp-cta-row">
+    <div class="gbp-field"><label>CTA TYPE</label><select id="gbpCta"><option>None</option><option>BOOK</option><option>LEARN_MORE</option><option>CALL</option><option>SIGN_UP</option><option>SHOP</option></select></div>
+    <div class="gbp-field"><label>CTA URL</label><input type="text" id="gbpCtaUrl"/></div>
+  </div>
+  <div class="gbp-field"><label>DOER NOTES (priority context for the doer)</label><textarea id="gbpNotes" style="min-height:70px;"></textarea></div>
+  <div class="gbp-field"><label>GO LIVE DATE — when this publishes to Google (required to approve)</label><input type="datetime-local" id="gbpGoLive" class="mono"/></div>
+  <div class="modal-foot">
+    <button class="btn" id="gbpClose"><span>CLOSE</span></button>
+    <button class="btn danger" id="gbpRej"><span>REJECT</span></button>
+    <button class="btn" id="gbpSave"><span>SAVE EDITS</span></button>
+    <button class="btn primary" id="gbpApprove"><span>APPROVE &amp; SCHEDULE</span></button>
+  </div>
+</div></div>
+
+<div class="modal-backdrop" id="chatModal"><div class="chat-inner">
+  <div class="chat-head">
+    <div><div class="chat-title" id="chatTitle">Discuss task</div><div class="chat-sub mono">verify against live page · SERP · keywords</div></div>
+    <button class="btn" id="chatClose"><span>CLOSE</span></button>
+  </div>
+  <div class="chat-thread" id="chatThread"></div>
+  <div class="chat-input-row">
+    <textarea id="chatInput" rows="2" placeholder="Ask about this task, or tell it to verify before you approve…"></textarea>
+    <button class="btn primary" id="chatSend"><span>SEND</span></button>
+  </div>
+  <div class="chat-foot mono">
+    <span id="chatPlanState">no plan saved yet</span>
+    <div style="display:flex; gap:8px;">
+      <button class="btn" id="chatDraft" disabled><span>DRAFT THE CHANGE</span></button>
+    </div>
+  </div>
+</div></div>
+
+<div class="coach" id="coach">
+  <div class="coach-step" id="coachStep"></div>
+  <div class="coach-title" id="coachTitle"></div>
+  <div class="coach-body" id="coachBody"></div>
+  <div class="coach-foot">
+    <div class="coach-dots" id="coachDots"></div>
+    <div style="display:flex; gap:8px;">
+      <button class="btn" id="coachBack"><span>BACK</span></button>
+      <button class="btn tour" id="coachNext"><span>NEXT</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const root = $('root');
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g,(c)=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const sevClass = (s) => s?.startsWith('P0')?'sev-p0':s?.startsWith('P1')?'sev-p1':'sev-p2';
+function showToast(msg, kind='ok'){ const t=$('toast'); t.textContent=msg; t.classList.remove('error','warn'); if(kind!=='ok')t.classList.add(kind); t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2600); }
+
+const SITE = { name:'Brave Lizard Tactical', domain:'bravelizard.com', niche:'Firearms training & shooting range', location:'St. George, UT · 320 acres', status:'Active', profile:'Conservative', keywordsCount:48, pagesCount:22 };
+
+let uid = 100;
+const nid = () => 'a' + (uid++);
+
+const state = {
+  tab: 'seo',
+  selected: new Set(),
+  collapsed: new Set(['done']),
+  seo: {
+    awaitingApproval: [
+      { id:nid(), title:'Build /precision-rifle-clinic landing page', severity:'P1 · High', actionType:'New Page', effort:90, owner:'doer', doerNotes:'', description:'No page targets "precision rifle class utah" (170/mo) — you only rank #14 via a blog post. Both competitors have dedicated clinic pages. Pull copy from the PRS match page + instructor bios.' },
+      { id:nid(), title:'Rewrite title tag on /uspsa-matches', severity:'P1 · High', actionType:'On-Page', effort:10, owner:'doer', verifierVerdict:'pass', doerNotes:'', description:'Current title is "Matches | Brave Lizard". Target "USPSA Matches in Southern Utah | Brave Lizard Tactical" — matches a 90/mo query you sit #7 on.' },
+      { id:nid(), title:'Add FAQ schema to /memberships', severity:'P2 · Med', actionType:'On-Page', effort:25, owner:'doer', doerNotes:'', description:'"People also ask" shows 6 membership questions (cost, guests, family plan, cancellation). Add FAQPage schema to win the rich result.' },
+      { id:nid(), title:'Fix NAP — address differs on 3 citations', severity:'P2 · Med', actionType:'Citations', effort:30, owner:'va', doerNotes:'', description:'BrightLocal flags Yelp, Foursquare & MapQuest still listing the old PO box. Update to the physical staging-area address used on GBP.' },
+    ],
+    approved: [
+      { id:nid(), title:"Publish blog: 'First time at an outdoor range — what to bring'", severity:'P2 · Med', actionType:'Content', effort:60, owner:'doer', doerNotes:'Keep it beginner-friendly. Link to the beginner pistol clinic + the digital waiver page. Mention water/sun — desert range.' , description:'Targets "what to bring to a shooting range" (320/mo, informational). Feeds the beginner-clinic funnel.'},
+      { id:nid(), title:'Add internal links from 6 blog posts → /training', severity:'P2 · Med', actionType:'Internal Links', effort:20, owner:'doer', doerNotes:'', description:'Training hub has only 3 internal links. Add contextual links from the safety + match-recap posts.' },
+    ],
+    draftReview: [
+      { id:nid(), title:"Rewrite /memberships hero for 'shooting range membership st george'", severity:'P1 · High', actionType:'On-Page', effort:30, owner:'doer', doerNotes:'Keep the "320 acres / shoot at sunrise" angle — it is the differentiator vs indoor ranges.',
+        doerOutput:'H1: Shooting Range Memberships in St. George — 320 Acres of Open Desert\n\nIntro: Skip the cramped indoor lanes. A Brave Lizard membership gets you year-round access to 320 acres of high-desert range — pistol bays, rifle lines out past 1,000 yards, and the freedom to actually move and train. Individual, family, and corporate plans. Shoot at sunrise, stay the weekend at our RV park, and get real reps with real instructors.\n\nMeta title: Shooting Range Membership St. George UT | Brave Lizard Tactical\nMeta description: Join a 320-acre outdoor shooting range in St. George. Individual, family & corporate memberships, training clinics, matches & on-site RV park.' },
+    ],
+    done: [
+      { id:nid(), title:'Compress homepage hero images (LCP 3.4s → 1.9s)', severity:'P2 · Med', actionType:'Technical', effort:30, owner:'doer', executedAt:'2026-06-25', doerOutput:'Converted 6 hero/gallery images to WebP, added lazy-load below the fold. PageSpeed mobile 62 → 89. CLS now 0.02.' },
+      { id:nid(), title:'Build /two-gun-match event page', severity:'P1 · High', actionType:'New Page', effort:75, owner:'doer', executedAt:'2026-06-22', doerOutput:'Published /two-gun-match with schedule, divisions, registration CTA, and Event schema. Indexed; ranking #9 for "two gun match utah" within 4 days.' },
+    ],
+  },
+  gbp: {
+    proposed: [
+      { id:nid(), caption:'Two-Gun Match — Saturday July 12', body:'Run pistol + rifle stages across our 320-acre desert range. Open + tactical divisions, new shooters welcome with an RSO. Squad up — limited slots.', cta:'BOOK', batch:'GEN-0627', img:'🎯' },
+      { id:nid(), caption:'New: Beginner Pistol Clinic every Saturday', body:'Never shot before? Our 2-hour intro covers safety, stance, grip and live fire with a certified instructor. Eye + ear pro provided. Bring water — it is the desert.', cta:'SIGN_UP', batch:'GEN-0627', img:'🔫' },
+      { id:nid(), caption:'RV hookups now open to members', body:'Stay the weekend. Full hookups at the range, roll out of bed and shoot at sunrise before the heat. Members book first.', cta:'LEARN_MORE', batch:'GEN-0627', img:'🏕' },
+    ],
+    approved: [],
+    scheduled: [
+      { id:nid(), caption:'Precision Rifle Series kicks off this month', body:'PRS-style stages from 300 to 1,000+ yards. Spotters welcome. First match of the season — come zero and compete.', cta:'BOOK', batch:'GEN-0620', img:'🎯', scheduledFor:'in 3d' },
+    ],
+    published: [
+      { id:nid(), caption:'Memorial Day Two-Gun recap', body:'42 shooters, 6 stages, zero ND. Thanks to everyone who came out. Photos on Facebook — next match July 12.', cta:'None', batch:'GEN-0522', img:'🏆', scheduledFor:'May 27' },
+    ],
+  },
+  audits: [
+    { id:'RUN-0627-A', status:'complete', cost:0.38, when:'3h ago', summary:'48 keywords · avg pos 11.2 (▲1.8 wk). 4 new actions queued. Biggest gaps: precision-rifle + membership landing pages.' },
+    { id:'RUN-0624-A', status:'complete', cost:0.41, when:'3d ago', summary:'Review velocity low vs competitor avg (187 vs 410). NAP mismatch on 3 citations flagged.' },
+    { id:'RUN-0620-A', status:'complete', cost:0.35, when:'7d ago', summary:'Core Web Vitals failing on mobile (LCP 3.4s). Two-gun match page opportunity identified.' },
+  ],
+};
+
+function statusBadge(s){ return s==='Active' ? '<span class="badge active">LIVE</span>' : '<span class="badge">'+esc(s)+'</span>'; }
+function profileBadge(p){ return p && p.startsWith('Conservative') ? '<span class="badge client">CLIENT</span>' : '<span class="badge">BAL</span>'; }
+
+const SEO_GROUPS = [
+  { key:'awaitingApproval', cls:'awaiting', label:'AWAITING APPROVAL', selectable:true, editable:true },
+  { key:'approved', cls:'approved', label:'APPROVED', selectable:true, editable:true, runDoer:true },
+  { key:'draftReview', cls:'draftReview', label:'DRAFT REVIEW', draftReview:true },
+  { key:'done', cls:'done', label:'DONE', showOutput:true },
+];
+
+function render(){
+  const aw = state.seo.awaitingApproval.length;
+  const ap = state.seo.approved.length;
+  const gbpPending = state.gbp.proposed.length + state.gbp.approved.length + state.gbp.scheduled.length;
+  root.innerHTML = `
+    <section class="site-hero" id="hero">
+      <div class="site-hero-top">
+        <div>
+          <div class="site-name">${esc(SITE.name)}</div>
+          <div class="site-meta-line">${esc(SITE.domain)} · ${esc(SITE.niche)} · ${esc(SITE.location)}</div>
+        </div>
+        <div class="site-badges">${statusBadge(SITE.status)} ${profileBadge(SITE.profile)}</div>
+      </div>
+      <div class="site-links">
+        <a class="site-link" href="#" style="color:#00FF94;border-color:rgba(0,255,148,0.3);">▦ WORK BOARD</a>
+        <a class="site-link" href="https://bravelizard.com" target="_blank" rel="noopener">DOMAIN ↗</a>
+        <a class="site-link" href="#">GBP ↗</a>
+        <a class="site-link" href="#">WP-ADMIN ↗</a>
+      </div>
+      <div class="site-stats-row">
+        <div class="site-stat"><div class="site-stat-label">KEYWORDS</div><div class="site-stat-value">${SITE.keywordsCount}</div></div>
+        <div class="site-stat"><div class="site-stat-label">PAGES</div><div class="site-stat-value">${SITE.pagesCount}</div></div>
+        <div class="site-stat"><div class="site-stat-label">AWAITING</div><div class="site-stat-value warn">${aw}</div></div>
+        <div class="site-stat"><div class="site-stat-label">APPROVED</div><div class="site-stat-value accent">${ap}</div></div>
+        <div class="site-stat"><div class="site-stat-label">LAST AUDIT</div><div class="site-stat-value mono" style="font-size:13px;">${state.audits[0]?state.audits[0].when:'—'}</div></div>
+      </div>
+    </section>
+
+    <div class="tabs" id="tabs">
+      <div class="tab ${state.tab==='seo'?'active':''}" data-tab="seo">SEO TASKS ${aw>0?`<span class="tab-badge warn">${aw}</span>`:`<span class="tab-badge">${ap}</span>`}</div>
+      <div class="tab ${state.tab==='gbp'?'active':''}" data-tab="gbp">GBP SCHEDULE ${gbpPending>0?`<span class="tab-badge warn">${gbpPending}</span>`:''}</div>
+      <div class="tab ${state.tab==='setup'?'active':''}" data-tab="setup">SETUP <span class="tab-badge">2</span></div>
+    </div>
+
+    <div class="tab-pane ${state.tab==='seo'?'active':''}" data-pane="seo">
+      <section class="action-bar" id="actionBar">
+        <div class="action-bar-msg" id="actionMsg">RUN A FRESH AUDIT (COLLECT → ANALYZE → PLAN → VERIFY). NO DOER.</div>
+        <div class="action-bar-actions">
+          <button class="btn warn" id="runAuditBtn"><span>RUN AUDIT</span></button>
+          <button class="btn primary" id="runDoerBtn" ${ap===0?'disabled':''}><span>RUN DOER (${ap})</span></button>
+        </div>
+      </section>
+      ${SEO_GROUPS.map(renderGroup).join('')}
+      <section>
+        <div class="group-head" style="cursor:default;"><div class="group-title" style="color:#c5cad3;">RECENT AUDITS<span class="ct">${state.audits.length}</span></div></div>
+        <div class="audit-strip">${state.audits.map(a=>`
+          <div class="audit-card"><div class="audit-id">${esc(a.id)}</div>
+          <div class="audit-meta"><span>${esc(a.status)}</span><span>$${a.cost.toFixed(2)}</span><span>${esc(a.when)}</span></div>
+          <div class="audit-summary">${esc(a.summary)}</div></div>`).join('')}</div>
+      </section>
+    </div>
+
+    <div class="tab-pane ${state.tab==='gbp'?'active':''}" data-pane="gbp">${renderGbp()}</div>
+    <div class="tab-pane ${state.tab==='setup'?'active':''}" data-pane="setup">${renderSetup()}</div>
+  `;
+  attach();
+  updateBulkBar();
+}
+
+function renderGroup(g){
+  const items = state.seo[g.key] || [];
+  if(!items.length && g.key==='draftReview') return '';
+  const collapsed = state.collapsed.has(g.key);
+  return `
+   <section class="group ${g.cls} ${collapsed?'collapsed':''}" data-group="${g.key}">
+    <div class="group-head" data-toggle="${g.key}">
+      <div class="group-title">${g.label}<span class="ct">${items.length}</span></div>
+      <div class="group-actions">
+        ${g.runDoer && items.length ? `<button class="btn primary" data-rundoer="1"><span>RUN DOER ON THESE</span></button>`:''}
+        ${g.draftReview && items.length ? `<button class="btn primary" data-puball="1"><span>PUBLISH ALL (${items.length})</span></button>`:''}
+      </div>
+    </div>
+    <div class="group-body">
+      ${items.length ? items.map(it=> g.draftReview?renderDraft(it):renderItem(it,g)).join('') : '<div class="empty">EMPTY</div>'}
+    </div>
+   </section>`;
+}
+
+function renderItem(it,g){
+  const sel = state.selected.has(it.id);
+  const out = g.showOutput && it.doerOutput;
+  return `
+  <div class="item ${sel?'selected':''}" data-id="${it.id}">
+    ${g.selectable?`<div class="item-check"><input type="checkbox" data-sel="${it.id}" ${sel?'checked':''}/></div>`:'<div></div>'}
+    <div class="item-body">
+      <div class="item-title">${esc(it.title)}</div>
+      ${it.description?`<div class="item-desc">${esc(it.description)}</div>`:''}
+      <div class="item-meta">
+        <span>${esc(it.actionType||'—')}</span>${it.effort?`<span>${it.effort}m</span>`:''}<span>${esc((it.owner||'').toUpperCase())}</span>
+        ${it.verifierVerdict?`<span>VERIFY: ${esc(it.verifierVerdict.toUpperCase())}</span>`:''}${it.executedAt?`<span>EXECUTED ${esc(it.executedAt)}</span>`:''}
+      </div>
+      ${g.editable?`
+        <div class="item-notes">
+          <div class="item-notes-label">NOTES FOR DOER ${it.doerNotes?'<span style="color:#00FF94;">· plan set</span>':''}</div>
+          <div class="item-notes-body ${it.doerNotes?'':'empty'}" contenteditable="true" data-note="${it.id}">${it.doerNotes?esc(it.doerNotes):'click to add a note for the doer — or use Discuss & Verify…'}</div>
+        </div>
+        <button class="btn" data-chat="${it.id}" style="margin-top:8px;"><span>💬 DISCUSS &amp; VERIFY</span></button>`
+      : (it.doerNotes?`<div class="item-notes"><div class="item-notes-label">NOTES FOR DOER</div><div class="item-notes-body">${esc(it.doerNotes)}</div></div>`:'')}
+      ${out?`<div class="item-extra">${esc(it.doerOutput)}</div>`:''}
+    </div>
+    <div class="item-side"><div class="item-sev ${sevClass(it.severity)}">${esc((it.severity||'').split(' ')[0])}</div></div>
+  </div>`;
+}
+
+function renderDraft(it){
+  return `
+  <div class="item draft-review" data-id="${it.id}">
+    <div style="display:flex; justify-content:space-between; gap:10px;">
+      <div style="flex:1; min-width:0;">
+        <div class="item-title" style="font-size:15px;">${esc(it.title)}</div>
+        ${it.description?`<div class="item-desc" style="margin-top:4px;">${esc(it.description)}</div>`:''}
+        <div class="item-meta" style="margin-top:6px;"><span>${esc(it.actionType)}</span><span>${it.effort}m</span><span>${esc((it.owner||'').toUpperCase())}</span></div>
+      </div>
+      <div class="item-sev ${sevClass(it.severity)}">${esc((it.severity||'').split(' ')[0])}</div>
+    </div>
+    <div class="draft-label">DRAFTED CHANGE — REVIEW, EDIT IF NEEDED, THEN PUBLISH</div>
+    <textarea class="draft-output">${esc(it.doerOutput||'')}</textarea>
+    <div class="item-notes" style="margin-top:10px;">
+      <div class="item-notes-label">NOTES FOR DOER (used on re-draft)</div>
+      <div class="item-notes-body ${it.doerNotes?'':'empty'}" contenteditable="true" data-note="${it.id}">${it.doerNotes?esc(it.doerNotes):'click to add a note…'}</div>
+    </div>
+    <div class="draft-actions">
+      <button class="btn primary" data-publish="${it.id}"><span>PUBLISH</span></button>
+      <button class="btn" data-redraft="${it.id}"><span>RE-DRAFT</span></button>
+      <button class="btn" data-chat="${it.id}"><span>💬 DISCUSS</span></button>
+      <button class="btn" data-savedraft="${it.id}"><span>SAVE EDIT</span></button>
+      <button class="btn danger" data-rejdraft="${it.id}"><span>REJECT</span></button>
+    </div>
+  </div>`;
+}
+
+function renderGbp(){
+  const groups = [
+    { key:'proposed', label:'PROPOSED', color:'#ff8ad8' },
+    { key:'approved', label:'APPROVED', color:'#00FF94' },
+    { key:'scheduled', label:'SCHEDULED', color:'#bba1ff' },
+    { key:'published', label:'PUBLISHED', color:'#8ab4ff' },
+  ];
+  const t = state.gbp.proposed.length + state.gbp.approved.length + state.gbp.scheduled.length;
+  return `
+  <section>
+    <div class="group-head" style="cursor:default;">
+      <div class="group-title" style="color:#c5cad3;">GBP SCHEDULE<span class="ct">${t}</span></div>
+      <div class="group-actions"><button class="btn warn" id="gbpGen"><span>GENERATE 3</span></button></div>
+    </div>
+    ${groups.map(g=>{
+      const items = state.gbp[g.key]||[];
+      if(!items.length && (g.key==='published'||g.key==='approved')) return '';
+      return `<section class="group" style="margin-top:14px;">
+        <div class="group-head" style="cursor:default;"><div class="group-title" style="color:${g.color}">${g.label}<span class="ct">${items.length}</span></div></div>
+        <div class="group-body">${items.length?items.map(gbpCard).join(''):'<div class="empty">EMPTY</div>'}</div>
+      </section>`;
+    }).join('')}
+  </section>`;
+}
+
+function gbpCard(p){
+  return `
+  <div class="gbp-card" data-gbp="${p.id}">
+    <div class="gbp-thumb">${p.img||'▦'}</div>
+    <div class="gbp-body-col">
+      <div class="gbp-caption">${esc(p.caption)}</div>
+      <div class="gbp-excerpt">${esc((p.body||'').slice(0,140))}</div>
+      <div class="gbp-meta"><span>${esc(p.batch||'—')}</span>${p.scheduledFor?`<span>→ ${esc(p.scheduledFor)}</span>`:''}</div>
+    </div>
+    <div class="gbp-side">${p.cta&&p.cta!=='None'?`<span class="gbp-cta-badge">${esc(p.cta.replace('_',' '))}</span>`:''}</div>
+  </div>`;
+}
+
+function renderSetup(){
+  const rows = [
+    ['CONNECTORS', [
+      ['Google Business Profile (GBP)', true, 'Brave Lizard Tactical'],
+      ['Google Search Console', true, 'sc-domain:bravelizard.com'],
+      ['WordPress app password', true, 'bravelizard.com'],
+      ['GHL location + social account', true, 'connected'],
+      ['Google Ads (scope)', false, 'needs adwords scope'],
+    ]],
+    ['DATA', [
+      ['Target keywords loaded', true, '48 tracked'],
+      ['Competitors set', true, '2 set'],
+      ['Citations baseline (BrightLocal)', true, '37 found · 3 wrong'],
+      ['Service / city pages mapped', false, '2 gaps open'],
+    ]],
+  ];
+  const total = rows.reduce((a,g)=>a+g[1].length,0);
+  const met = rows.reduce((a,g)=>a+g[1].filter(r=>r[1]).length,0);
+  const pct = Math.round(met/total*100);
+  return `
+  <section style="display:flex; flex-direction:column; gap:14px;">
+    <div class="rd-summary">
+      <div><div class="rd-summary-pct">${pct}%</div><div class="rd-summary-sub">SETUP COMPLETE · ${met}/${total} CHECKS</div></div>
+      <div class="rd-bar"><div class="rd-bar-fill" style="width:${pct}%;"></div></div>
+      <div class="rd-summary-sub" style="max-width:280px;">2 items left before this site runs fully on autopilot. Both are minor.</div>
+    </div>
+    ${rows.map(g=>`
+      <div class="rd-group">
+        <div class="rd-group-head"><div class="rd-group-name">${g[0]}</div></div>
+        ${g[1].map(r=>`<div class="rd-row"><div class="rd-ic ${r[1]?'ok':'no'}">${r[1]?'✓':'✕'}</div><div class="rd-label">${esc(r[0])}</div><div class="rd-val">${esc(r[2])}</div></div>`).join('')}
+      </div>`).join('')}
+  </section>`;
+}
+
+// ── interactions ──────────────────────────────────────────────
+function attach(){
+  document.querySelectorAll('.tab').forEach(el=>el.addEventListener('click',()=>{ state.tab=el.dataset.tab; render(); }));
+  document.querySelectorAll('[data-toggle]').forEach(el=>el.addEventListener('click',()=>{
+    const k=el.dataset.toggle; state.collapsed.has(k)?state.collapsed.delete(k):state.collapsed.add(k); render();
+  }));
+  document.querySelectorAll('[data-sel]').forEach(el=>el.addEventListener('change',e=>{
+    e.stopPropagation(); const id=el.dataset.sel; el.checked?state.selected.add(id):state.selected.delete(id);
+    el.closest('.item').classList.toggle('selected', el.checked); updateBulkBar();
+  }));
+  document.querySelectorAll('[data-chat]').forEach(el=>el.addEventListener('click',()=>openChat(el.dataset.chat)));
+  document.querySelectorAll('[data-gbp]').forEach(el=>el.addEventListener('click',()=>openGbp(el.dataset.gbp)));
+  document.querySelectorAll('[data-publish]').forEach(el=>el.addEventListener('click',()=>publishDraft(el.dataset.publish)));
+  document.querySelectorAll('[data-redraft]').forEach(el=>el.addEventListener('click',()=>{ showToast('RE-DRAFTING WITH YOUR NOTES…','warn'); }));
+  document.querySelectorAll('[data-savedraft]').forEach(el=>el.addEventListener('click',()=>showToast('DRAFT SAVED')));
+  document.querySelectorAll('[data-rejdraft]').forEach(el=>el.addEventListener('click',()=>{ removeFrom('draftReview',el.dataset.rejdraft); showToast('DRAFT REJECTED','error'); render(); }));
+  document.querySelectorAll('[data-rundoer]').forEach(el=>el.addEventListener('click',runDoer));
+  document.querySelectorAll('[data-puball]').forEach(el=>el.addEventListener('click',()=>{ state.seo.draftReview.slice().forEach(d=>publishDraft(d.id,true)); render(); showToast('ALL DRAFTS PUBLISHED'); }));
+  document.querySelectorAll('[data-note]').forEach(el=>el.addEventListener('blur',()=>{
+    const it=findItem(el.dataset.note); if(it){ const v=el.textContent.trim(); if(v && !v.startsWith('click to')){ it.doerNotes=v; } }
+  }));
+  $('runAuditBtn')?.addEventListener('click',runAudit);
+  $('runDoerBtn')?.addEventListener('click',runDoer);
+  $('gbpGen')?.addEventListener('click',generateGbp);
+}
+
+function findItem(id){ for(const k in state.seo){ const f=state.seo[k].find(x=>x.id===id); if(f)return f; } return null; }
+function removeFrom(k,id){ state.seo[k]=state.seo[k].filter(x=>x.id!==id); }
+function findGbp(id){ for(const k in state.gbp){ const f=state.gbp[k].find(x=>x.id===id); if(f)return {item:f,k}; } return null; }
+
+function updateBulkBar(){
+  const n=state.selected.size; const bar=$('bulkBar');
+  if(n>0){ bar.classList.add('show'); $('bulkCount').textContent=n+' SELECTED'; } else bar.classList.remove('show');
+}
+$('bulkApprove').addEventListener('click',()=>{
+  const ids=[...state.selected];
+  ids.forEach(id=>{ const it=state.seo.awaitingApproval.find(x=>x.id===id); if(it){ removeFrom('awaitingApproval',id); state.seo.approved.unshift(it); } });
+  state.selected.clear(); render(); showToast('APPROVED '+ids.length+' · MOVED TO APPROVED QUEUE');
+});
+$('bulkReject').addEventListener('click',()=>{
+  const ids=[...state.selected]; ids.forEach(id=>removeFrom('awaitingApproval',id)); state.selected.clear(); render(); showToast('REJECTED '+ids.length,'error');
+});
+$('bulkClear').addEventListener('click',()=>{ state.selected.clear(); render(); });
+
+function runAudit(){
+  const msg=$('actionMsg'); const btn=$('runAuditBtn'); btn.disabled=true; btn.innerHTML='<span class="spinner"></span><span>RUNNING</span>';
+  const steps=[
+    ['COLLECT', 'pulling GSC clicks, GBP insights, 48 keyword ranks, reviews…'],
+    ['ANALYZE', 'comparing vs 2 competitors · scoring gaps & intent…'],
+    ['PLAN', 'writing prioritized action items…'],
+    ['VERIFY', 'sanity-checking the plan against live pages…'],
+  ];
+  let i=0;
+  (function nextStep(){
+    if(i<steps.length){ msg.innerHTML=`<span style="color:#00FF94;">▶ ${steps[i][0]}</span> · ${steps[i][1]}`; i++; setTimeout(nextStep,900); }
+    else {
+      state.audits.unshift({ id:'RUN-0627-B', status:'complete', cost:0.39, when:'just now', summary:'48 keywords · avg pos 10.9 (▲0.3). 1 new action: schema gap on /training. Re-confirmed precision-rifle page priority.' });
+      state.seo.awaitingApproval.unshift({ id:nid(), title:'Add Course schema to /training clinics', severity:'P2 · Med', actionType:'On-Page', effort:20, owner:'doer', doerNotes:'', description:'Clinics list lacks Course/Event schema — competitors show price + date in results. Add structured data per clinic.' });
+      msg.textContent='RUN A FRESH AUDIT (COLLECT → ANALYZE → PLAN → VERIFY). NO DOER.'; btn.disabled=false; btn.innerHTML='<span>RUN AUDIT</span>';
+      render(); showToast('AUDIT COMPLETE · 1 NEW ACTION QUEUED');
+    }
+  })();
+}
+
+function runDoer(){
+  if(!state.seo.approved.length){ showToast('NOTHING APPROVED TO RUN','warn'); return; }
+  showToast('DOER RUNNING ON '+state.seo.approved.length+' APPROVED ITEMS…','warn');
+  const moving=state.seo.approved.slice();
+  state.seo.approved=[]; render();
+  let i=0;
+  (function step(){
+    if(i<moving.length){
+      const it=moving[i];
+      if(it.actionType==='Content'||it.actionType==='New Page'||it.actionType==='On-Page'){
+        it.doerOutput = it.doerOutput || ('Drafted change for "'+it.title+'". Review the copy, edit inline, then Publish to push live to WordPress.');
+        state.seo.draftReview.unshift(it);
+      } else {
+        it.executedAt='just now'; it.doerOutput='Executed automatically — '+it.actionType+' updated. Logged to Airtable.';
+        state.seo.done.unshift(it);
+      }
+      i++; render(); setTimeout(step,700);
+    } else { showToast('DOER DONE · '+state.seo.draftReview.length+' DRAFTS NEED REVIEW'); }
+  })();
+}
+
+function publishDraft(id, silent){
+  const it=state.seo.draftReview.find(x=>x.id===id); if(!it) return;
+  removeFrom('draftReview',id); it.executedAt='just now';
+  it.doerOutput='Published live to WordPress via app password. URL updated, sitemap pinged, change logged to Airtable.';
+  state.seo.done.unshift(it);
+  if(!silent){ render(); showToast('PUBLISHED LIVE → bravelizard.com'); }
+}
+
+// ── GBP modal ──
+let curGbp=null;
+function openGbp(id){
+  const r=findGbp(id); if(!r) return; curGbp=r;
+  const p=r.item;
+  $('gbpCap').value=p.caption||''; $('gbpBody').value=p.body||''; $('gbpImg').value=p.imageUrl||'';
+  $('gbpCta').value=p.cta||'None'; $('gbpCtaUrl').value='https://bravelizard.com/events'; $('gbpNotes').value=p.doerNotes||'';
+  $('gbpModalImgWrap').innerHTML=`<div style="height:120px; border-radius:8px; background:rgba(0,0,0,0.4); display:flex; align-items:center; justify-content:center; font-size:48px;">${p.img||'▦'}</div>`;
+  $('gbpModal').classList.add('show');
+}
+$('gbpClose').addEventListener('click',()=>$('gbpModal').classList.remove('show'));
+$('gbpModal').addEventListener('click',e=>{ if(e.target.id==='gbpModal') $('gbpModal').classList.remove('show'); });
+$('gbpSave').addEventListener('click',()=>{ if(curGbp){ curGbp.item.caption=$('gbpCap').value; curGbp.item.body=$('gbpBody').value; } $('gbpModal').classList.remove('show'); render(); showToast('SAVED'); });
+$('gbpRej').addEventListener('click',()=>{ if(curGbp){ removeFrom2(curGbp.k,curGbp.item.id); } $('gbpModal').classList.remove('show'); render(); showToast('POST REJECTED','error'); });
+$('gbpApprove').addEventListener('click',()=>{
+  if(!$('gbpGoLive').value){ showToast('SET A GO LIVE DATE FIRST','error'); return; }
+  if(curGbp){ const p=curGbp.item; removeFrom2(curGbp.k,p.id); p.scheduledFor='go-live '+$('gbpGoLive').value.replace('T',' '); state.gbp.scheduled.unshift(p); }
+  $('gbpModal').classList.remove('show'); render(); showToast('APPROVED & SCHEDULED → GBP via GHL');
+});
+function removeFrom2(k,id){ state.gbp[k]=state.gbp[k].filter(x=>x.id!==id); }
+
+function generateGbp(){
+  const btn=$('gbpGen'); btn.disabled=true; btn.innerHTML='<span class="spinner"></span><span>WRITING</span>';
+  setTimeout(()=>{
+    const fresh=[
+      { id:nid(), caption:'Father–son range day this weekend', body:'Bring the kid out for a safe first session. Family memberships cover both — instructor-led, all gear provided.', cta:'BOOK', batch:'GEN-0627-B', img:'🎯' },
+      { id:nid(), caption:'Long-range 101: zero past 600 yards', body:'New precision clinic for anyone who wants to stretch it out. Spotting scopes available, data books included.', cta:'SIGN_UP', batch:'GEN-0627-B', img:'🔭' },
+      { id:nid(), caption:'Corporate team-building packages', body:'Book the range for your crew — guided stations, friendly competition, catering optional. Quotes same day.', cta:'CALL', batch:'GEN-0627-B', img:'🤝' },
+    ];
+    state.gbp.proposed.unshift(...fresh);
+    btn.disabled=false; btn.innerHTML='<span>GENERATE 3</span>'; render(); showToast('GENERATED 3 NEW POSTS · REVIEW & SCHEDULE');
+  },1400);
+}
+
+// ── per-task Discuss & Verify chat ──
+let chatId=null;
+const CHAT_SCRIPT = [
+  { tools:['get_page bravelizard.com/memberships','serp "shooting range membership st george"','keyword_ranks(membership*)'] },
+  { role:'assistant', text:'Checked the live page and SERP. Right now /memberships ranks #8 for "shooting range membership st george" (90/mo). The page leads with pricing tiers but never says "St. George" or "membership" in the H1 — and the top 3 results all do. Your 320-acre / outdoor angle is a real differentiator none of them use.' },
+  { role:'assistant', plan:true, text:'PLAN: Rewrite the H1 + intro to lead with "Shooting Range Memberships in St. George" and the 320-acre outdoor hook, add the keyword to the meta title, and keep the pricing tiers below. Low risk, on-page only. Want me to draft it?' },
+];
+function openChat(id){
+  chatId=id; const it=findItem(id);
+  $('chatTitle').textContent = it?it.title:'Discuss task';
+  $('chatThread').innerHTML='';
+  appendChat('assistant','Ready. Ask me anything about this task, or say "verify it" and I\'ll check the live page, SERP and your rankings before you approve.');
+  $('chatPlanState').textContent='no plan saved yet'; $('chatDraft').disabled=true;
+  $('chatModal').classList.add('show');
+  $('chatInput').value='verify this against the live page and SERP';
+}
+function appendChat(role,text,plan){
+  const d=document.createElement('div'); d.className='chat-msg '+role+(plan?' plan':''); d.textContent=text;
+  $('chatThread').appendChild(d); $('chatThread').scrollTop=$('chatThread').scrollHeight;
+}
+function appendTools(list){
+  const d=document.createElement('div'); d.className='chat-tools'; d.innerHTML=list.map(t=>`<span>${esc(t)}</span>`).join('');
+  $('chatThread').appendChild(d); $('chatThread').scrollTop=$('chatThread').scrollHeight;
+}
+$('chatSend').addEventListener('click',()=>{
+  const v=$('chatInput').value.trim(); if(!v) return; appendChat('user',v); $('chatInput').value='';
+  const think=document.createElement('div'); think.className='chat-tools'; think.innerHTML='<span>thinking…</span>'; $('chatThread').appendChild(think);
+  setTimeout(()=>{ think.remove(); appendTools(CHAT_SCRIPT[0].tools); },500);
+  setTimeout(()=>{ appendChat('assistant',CHAT_SCRIPT[1].text); },1500);
+  setTimeout(()=>{ appendChat('assistant',CHAT_SCRIPT[2].text,true); $('chatPlanState').textContent='plan ready · saved to doer notes'; $('chatDraft').disabled=false;
+    const it=findItem(chatId); if(it && !it.doerNotes){ it.doerNotes='Lead H1 with "Shooting Range Memberships in St. George" + 320-acre outdoor hook; keyword in meta title; keep pricing tiers below.'; } },2500);
+});
+$('chatClose').addEventListener('click',()=>{ $('chatModal').classList.remove('show'); render(); });
+$('chatModal').addEventListener('click',e=>{ if(e.target.id==='chatModal'){ $('chatModal').classList.remove('show'); render(); } });
+$('chatDraft').addEventListener('click',()=>{
+  const it=findItem(chatId); $('chatModal').classList.remove('show');
+  if(it && state.seo.awaitingApproval.includes(it)){ removeFrom('awaitingApproval',it.id); state.seo.approved.unshift(it); }
+  render(); showToast('PLAN SAVED · ITEM READY FOR DOER');
+});
+$('refreshBtn').addEventListener('click',()=>{ $('lastUpdated').textContent='UPDATED '+new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}).toUpperCase(); render(); showToast('REFRESHED'); });
+
+// ── Walkthrough ──
+const TOUR = [
+  { tab:'seo', sel:'#hero', title:'One site, one command center', body:'This is the whole platform focused on Brave Lizard Tactical. The top row is the snapshot the agent keeps current on its own: keywords tracked, pages, what is waiting on you, and when it last audited the site.' },
+  { tab:'seo', sel:'#tabs', title:'Three areas', body:'SEO TASKS — the website work. GBP SCHEDULE — your Google Business posts. SETUP — what is connected. The yellow number means "needs your eyes."' },
+  { tab:'seo', sel:'#actionBar', title:'Run an audit', body:'RUN AUDIT walks the site through collect → analyze → plan → verify — it gathers data, finds gaps vs competitors, and writes a to-do list. It never touches the live site. Try clicking it after the tour.' },
+  { tab:'seo', sel:'[data-group="awaitingApproval"]', title:'Nothing happens without you', body:'Every idea lands here first. Tick the ones you like and APPROVE SELECTED — or open one and hit DISCUSS & VERIFY to make the agent prove it against the live page and SERP before you commit.' },
+  { tab:'seo', sel:'[data-group="approved"]', title:'Approved → the doer', body:'Approved items are queued for the "doer." RUN DOER turns them into real drafts or applies them. You stay in control of what goes live.' },
+  { tab:'seo', sel:'[data-group="draftReview"]', title:'Review the actual change', body:'When the doer writes copy, you see the exact words here before anything publishes. Edit it inline, then PUBLISH pushes it straight to the website. Full paper trail.' },
+  { tab:'gbp', sel:'#gbpGen', title:'Google posts on autopilot', body:'GENERATE 3 writes Google Business posts in your voice. Click any card to edit it, pick a go-live date on the calendar, and APPROVE & SCHEDULE — it posts itself on that date.' },
+  { tab:'setup', sel:'.rd-summary', title:'What is connected', body:'The readiness check shows everything wired up — Google, WordPress, reviews, keywords. Green means the agent can act there. That is the whole system. Click RESTART anytime.' },
+];
+let tstep=0;
+function startTour(){ tstep=0; showStep(); }
+function showStep(){
+  const s=TOUR[tstep];
+  if(state.tab!==s.tab){ state.tab=s.tab; render(); }
+  document.querySelectorAll('.glow').forEach(e=>e.classList.remove('glow'));
+  setTimeout(()=>{
+    const el=document.querySelector(s.sel);
+    if(el){ el.classList.add('glow'); el.scrollIntoView({behavior:'smooth',block:'center'}); }
+  },60);
+  $('coachStep').textContent='STEP '+(tstep+1)+' / '+TOUR.length;
+  $('coachTitle').textContent=s.title; $('coachBody').textContent=s.body;
+  $('coachDots').innerHTML=TOUR.map((_,i)=>`<div class="coach-dot ${i===tstep?'on':''}"></div>`).join('');
+  $('coachNext').querySelector('span').textContent = tstep===TOUR.length-1?'DONE':'NEXT';
+  $('coach').classList.add('show');
+}
+function endGlow(){ document.querySelectorAll('.glow').forEach(e=>e.classList.remove('glow')); }
+$('tourBtn').addEventListener('click',startTour);
+$('tourBtn2').addEventListener('click',startTour);
+$('coachNext').addEventListener('click',()=>{ if(tstep===TOUR.length-1){ $('coach').classList.remove('show'); endGlow(); } else { tstep++; showStep(); } });
+$('coachBack').addEventListener('click',()=>{ if(tstep>0){ tstep--; showStep(); } });
+
+render();
+</script>
+</body>
+</html>

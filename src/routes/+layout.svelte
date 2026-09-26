@@ -4,6 +4,7 @@
 	import Footer from '$lib/components/Footer.svelte';
 
 	let { children } = $props();
+	let paused = $state(false);
 </script>
 
 <svelte:head>
@@ -21,12 +22,16 @@
 
 <a class="skip" href="#main">Skip to content</a>
 <Nav />
+<button class="motion-toggle" aria-pressed={paused} onclick={() => { paused = !paused; document.documentElement.classList.toggle('motion-paused', paused); }}>{paused ? 'Play motion' : 'Pause motion'}</button>
 <main id="main">
 	{@render children()}
 </main>
 <Footer />
 
 <style>
+	.motion-toggle { position: fixed; bottom: 12px; right: 12px; z-index: 50; border: 1px solid currentColor; border-radius: 999px; background: var(--paper); color: var(--ink); padding: 10px 16px; min-height: 44px; font: 600 12px var(--body); cursor: pointer; }
+	@media print { .motion-toggle { display: none; } }
+	@media (prefers-reduced-motion: reduce) { .motion-toggle { display: none; } }
 	.skip {
 		position: absolute;
 		left: -999px;
