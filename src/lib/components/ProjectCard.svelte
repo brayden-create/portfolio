@@ -23,9 +23,9 @@
 				<summary><span>Learn more</span><i aria-hidden="true">▾</i></summary>
 				<div class="information">
 					<div>
-						<p class="description">{project.summary}</p>
-						<h4>What made it possible</h4>
-						<p>{project.hard}</p>
+						{#each project.summary.split('\n\n') as para}<p class="description">{para}</p>{/each}
+						<h4>How it held up</h4>
+						{#each project.hard.split('\n\n') as para}<p>{para}</p>{/each}
 					</div>
 					<div>
 						<h4>Built with</h4>

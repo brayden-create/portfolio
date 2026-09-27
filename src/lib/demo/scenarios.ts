@@ -31,7 +31,7 @@ const hoursFragment = `<style>
 <div id="blt-v1"><section class="hours">
 <b>RANGE HOURS</b>
 <span>Thursday to Friday: 12pm to sunset</span>
-<span>Saturday: 8am to 4pm</span>
+<span>Saturday: 9am to 5pm</span>
 <span>Sunday: closed</span>
 </section></div>`;
 
@@ -56,14 +56,14 @@ const timerFragment = `<style>#blt-v1 .cd{font:700 32px 'Oswald',sans-serif}</st
 export const scenarios: Scenario[] = [
 	{
 		key: 'hours',
-		chip: 'Change Saturday hours to 8am to 4pm',
+		chip: 'Change Saturday hours to 9am to 5pm',
 		match: /hour|saturday|open|close/i,
 		tools: ['list_pages {search: "home"}', 'get_page {id: 49544}', 'update_page {id: 49544, section: "hours"}'],
 		content: hoursFragment,
-		effect: { kind: 'hours', value: '8am to 4pm' },
+		effect: { kind: 'hours', value: '9am to 5pm' },
 		log: { action: 'update_page', target: 'Home · hours block' },
 		reply:
-			'Done. Saturday now reads 8am to 4pm on the home page. The change passed the content check and it’s in the Activity Log if you need to undo it.'
+			'Done. Saturday now reads 9am to 5pm on the home page. The change passed the content check and it’s in the Activity Log if you need to undo it.'
 	},
 	{
 		key: 'clinic',

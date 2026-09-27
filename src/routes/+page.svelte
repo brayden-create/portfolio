@@ -9,25 +9,25 @@
 	import { projects } from '$lib/data/projects';
 
 	const fit = [
-		{ status: 'yes', ask: 'Built and maintained a production marketing site real teams depend on', proof: 'Client sites for local businesses, which I run and update myself, like bravelizard.com and kalamasilvas.com.', href: '#kalama', cta: 'Kalama Silvas' },
-		{ status: 'yes', ask: 'Set up or evolved a CMS for a non-technical team', proof: 'A plain-English CMS a range owner uses instead of WordPress admin, then redeployed for a second client in half the time.', href: '/demos/chat-cms/', cta: 'Try the CMS' },
-		{ status: 'yes', ask: 'Writes tests and cares about edge cases', proof: 'A 40-test Vitest suite on a call-dispatch service, a production validator on every CMS write, and build checks that fail on bad copy.', href: '#outbound', cta: 'See the tests' },
-		{ status: 'part', ask: 'Diagnosed and fixed real performance bottlenecks (LCP)', proof: 'My SEO pipeline collects Core Web Vitals, and this site lazy-loads its product fonts. A documented before and after on a client site is next.', href: '', cta: '' },
-		{ status: 'yes', ask: 'Takes it end to end, from scoping to smoke testing in production', proof: 'I’m usually the only engineer, so every project here went from the owner’s ask to a verified deploy.', href: '#work', cta: 'The work' },
-		{ status: 'yes', ask: 'Works closely with marketers, designers and stakeholders', proof: 'Business owners are my stakeholders. Turning “can it just do this?” into something they can run is the whole job.', href: '#chat-cms', cta: 'Chat CMS' },
-		{ status: 'yes', ask: 'Uses AI tools like Claude Code, and knows when to push back', proof: 'Daily. I check what it writes against the real code and data. Several claims on this site were corrected that way.', href: '#how', cta: 'How I work' },
-		{ status: 'yes', ask: 'TypeScript and a modern framework (SvelteKit, bonus for Svelte)', proof: 'This site is SvelteKit and Svelte 5. Ops Tasks is Next.js and React. Most of my Workers are strict TypeScript.', href: '#this-site', cta: 'This site' },
-		{ status: 'part', ask: 'Bonus: Sanity CMS', proof: 'Learning it now. The project data on this site is already modeled as typed documents, ready to move into a Studio.', href: '', cta: '' },
-		{ status: 'part', ask: 'Bonus: Figma and design feedback', proof: 'I work from designs and give feedback on them, but Figma isn’t my daily tool yet.', href: '', cta: '' },
-		{ status: 'yes', ask: 'Bonus: documentation others actually want to read', proof: 'I wrote a step-by-step build playbook for the CMS, which is how the second deployment went twice as fast.', href: '#clearpoint', cta: 'The redeploy' },
-		{ status: 'no', ask: 'Bonus: localization, GDPR and cookie consent', proof: 'Not something I’ve shipped yet.', href: '', cta: '' }
+		{ status: "yes", ask: "Built and maintained a production marketing site real teams depend on", proof: "I build and maintain client sites for local businesses, including bravelizard.com and kalamasilvas.com.", href: "#kalama", cta: "Kalama Silvas" },
+		{ status: "yes", ask: "Set up or evolved a CMS for a non-technical team", proof: "I built a plain-English CMS a range owner uses instead of WordPress admin, then redeployed the same pattern for a second client in about half the time.", href: "/demos/chat-cms/", cta: "Try the CMS" },
+		{ status: "yes", ask: "Writes tests and cares about edge cases", proof: "I wrote a 40-test Vitest suite for a call-dispatch service, added production validation to every CMS write, and use build checks that fail on unsafe copy.", href: "#outbound", cta: "See the tests" },
+		{ status: "part", ask: "Diagnosed and fixed real performance bottlenecks", proof: "My SEO pipeline collects Core Web Vitals, and this site lazy-loads product fonts. A documented before-and-after client performance fix is next.", href: "", cta: "" },
+		{ status: "yes", ask: "Takes work end to end, from scoping to production smoke testing", proof: "I am usually the only engineer on my projects, so I take the work from the owner’s ask to a verified deploy.", href: "#work", cta: "The work" },
+		{ status: "yes", ask: "Works closely with marketers, designers, and stakeholders", proof: "My stakeholders are business owners. Turning “Can it just do this?” into something they can run is the work.", href: "#chat-cms", cta: "Chat CMS" },
+		{ status: "yes", ask: "Uses AI tools like Claude Code and knows when to push back", proof: "I use AI tools daily, but I check the output against the real code, data, and constraints. Several claims on this site were corrected that way.", href: "#how", cta: "How I work" },
+		{ status: "yes", ask: "TypeScript and a modern framework, with Svelte as a bonus", proof: "This site is built with SvelteKit and Svelte 5. Ops Tasks is built with Next.js and React. Most of my Workers are strict TypeScript.", href: "#this-site", cta: "This site" },
+		{ status: "part", ask: "Bonus: Sanity CMS", proof: "I am learning it now. The project data on this site is already modeled as typed documents, ready to move into a Studio.", href: "", cta: "" },
+		{ status: "part", ask: "Bonus: Figma and design feedback", proof: "I use Figma through Claude Code API to inspect designs, understand layout systems, and translate design feedback into shipped implementation changes.", href: "", cta: "" },
+		{ status: "yes", ask: "Bonus: documentation others actually use", proof: "I wrote a step-by-step CMS build playbook, which helped the second deployment move about twice as fast.", href: "#clearpoint", cta: "The redeploy" },
+		{ status: "no", ask: "Bonus: localization, GDPR, and cookie consent", proof: "I have not shipped this yet.", href: "", cta: "" }
 	];
 
 	const principles = [
-		{ t: 'Make changes safe', d: 'A business owner should be able to update a page without worrying about breaking the site. In the CMS, I validate changes on the server, ask before deleting, and keep an activity log.' },
-		{ t: 'Find out what happened', d: 'I like the troubleshooting part. A broken layout, a blocked request, a page Google indexed twice: I want to understand the cause before changing things.' },
-		{ t: 'Leave a useful check behind', d: 'When I keep running into the same mistake, I look for a way to catch it automatically. That has led to build checks, validators and a Vitest suite for my call-dispatch tool.' },
-		{ t: 'Use AI. Ask questions.', d: 'Claude Code is part of how I build. I still have to understand the result, test it and deal with it when something goes wrong.' }
+		{ t: "Make changes safe.", d: "A business owner should be able to update a page without worrying about breaking the site. In the CMS, I validate changes on the server, ask before deleting, and keep an activity log." },
+		{ t: "Find out what happened.", d: "I like the troubleshooting part. A broken layout, a blocked request, a page Google indexed twice: I want to understand the cause before changing things." },
+		{ t: "Leave a useful check behind.", d: "When I keep running into the same mistake, I look for a way to catch it automatically. That has led to build checks, validators, and a Vitest suite for my call-dispatch tool." },
+		{ t: "Use AI, but stay responsible for the work.", d: "Claude Code is part of how I build. I still have to understand the output, test it, and handle the parts that go wrong." }
 	];
 </script>
 
@@ -42,15 +42,15 @@
 <section class="hero" use:motion use:scrollScene>
 	<div class="wrap">
 		<p class="eyebrow intro">FOR THE NEX TEAM · FRONTEND ENGINEER, MARKETING &amp; DIGITAL EXPERIENCE</p>
-		<h1 class="display"><span>A product</span><span>I’m behind.</span><span><em>Skills you can</em></span><span><em>get behind.</em></span></h1>
-		<p class="lede">I build marketing sites and the systems behind them. Frontend, CMS tooling, integrations, analytics and the guardrails that keep changes safe.</p>
-		<p class="hero-note">Usually because someone said, “There has to be an easier way.”</p>
+		<h1 class="display"><span>A product</span><span>my family uses.</span><span><em>The work I</em></span><span><em>want to do.</em></span></h1>
+		<p class="lede">I build marketing sites, CMS tools, integrations, analytics, and the guardrails that keep real teams from breaking things when they move fast.</p>
+		<p class="hero-note">Most of my projects start with the same sentence: “There has to be an easier way.”</p>
 		<Button href="#fit" label="See how I fit the role" />
 	</div>
 	<div class="hero-art" aria-hidden="true">
 		<div class="win w1"><i></i><i></i><i></i><b style="width:70%"></b><b style="width:45%"></b></div>
 		<div class="win w2"><span>Websites.</span><span>Tools.</span><span>Less busywork.</span></div>
-		<div class="win w3"><em>“Change the hours to 9 to 5 on Saturday.”</em><strong>✓ Change saved to activity log</strong></div>
+		<div class="win w3"><em>“Change Saturday hours to 9am to 5pm.”</em><strong>✓ Change saved to activity log</strong></div>
 	</div>
 	<svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
 		<path d="M0 60 L1440 0 V90 H0Z" fill="var(--mint)" />
@@ -60,7 +60,7 @@
 <section class="why-nex" use:motion>
 	<div class="wrap why-grid">
 		<div><p class="eyebrow">Why Nex</p><h2 class="display">We already have one<br />in our living room.</h2></div>
-		<div><p>I have two boys, and our family owns and regularly uses Nex Playground.</p><p>So when I saw an engineering opening at Nex, I paid attention.</p></div>
+		<div><p>My family owns and regularly uses Nex Playground. My two boys know the product before they know the company behind it.</p><p>So when I saw a frontend engineering role focused on marketing and digital experience, it felt different.</p><p>This is not just a company I found on a job board. It is a product already part of our home.</p></div>
 	</div>
 </section>
 
@@ -68,13 +68,13 @@
 	<div class="wrap meet-grid">
 		<div>
 			<h2 class="display">From machines<br />to software.</h2>
-			<p>I've spent nine years troubleshooting production equipment, where a bad diagnosis means more downtime and another trip back to the same machine.</p>
+			<p>I have spent nine years troubleshooting production equipment. In that world, a bad diagnosis means more downtime, another trip back, and a problem that still is not solved.</p>
 			<p>In 2023, I started studying software development at Southwest Applied Technology College, focused on Java. I spent about a year and a half in the program.</p>
 			<p>Then I started building.</p>
 			<p>That became PL Pages in 2024.</p>
-			<p>Today I build production marketing sites and business systems for small companies, usually as the only engineer involved. That means I end up owning a lot of the path: frontend, content structure, APIs, deployment, analytics, CMS tooling and the production problems that show up afterward.</p>
+			<p>Today I build production marketing sites and business systems for small companies, usually as the only engineer involved. That means I own a lot of the path: frontend, content structure, APIs, deployment, analytics, CMS tooling, and the production problems that show up after launch.</p>
 			<p>The tools changed.</p>
-			<p>The way I work didn't.</p>
+			<p>The way I work did not.</p>
 			<p>Find the real problem. Understand why it happened. Build the fix. Test it under real conditions. Leave the system better than you found it.</p>
 		</div>
 		<div class="background-art"><Cube size={200} /></div>
@@ -85,13 +85,13 @@
 	<div class="wrap move-grid">
 		<div use:motion>
 			<p class="eyebrow">Why now</p>
-			<h2 class="display">I wasn't looking<br />for an exit.</h2>
+			<h2 class="display">I am not looking<br />for an exit.</h2>
 		</div>
 		<div class="move-story" use:motion>
-			<p>I checked out the role because my family already knew Nex. I kept reading because the work sounded like the direction I've been moving toward on my own.</p>
-			<p>I've spent the last few years learning software and building sites, tools and systems outside my full-time job.</p>
-			<p class="move-heart"><strong>I'm not trying to get away from what I do now. I'm trying to get closer to what I want to get really good at.</strong></p>
-			<p>Getting to do that full time, for a product my family already uses, makes this one different.</p>
+			<p>I checked out the role because my family already knew Nex. I kept reading because the work sounded like the direction I have been moving toward on my own.</p>
+			<p>I have spent the last few years learning software and building sites, tools, and systems outside my full-time job.</p>
+			<p class="move-heart"><strong>I am not trying to get away from what I do now. I am trying to get closer to what I want to get really good at.</strong></p>
+			<p>Doing that full time, for a product my family already uses, makes this role stand out.</p>
 		</div>
 	</div>
 </section>
@@ -100,7 +100,7 @@
 	<div class="wrap">
 		<p class="eyebrow">The job, line by line</p>
 		<h2 class="display">What you asked for.<br />Where to see it.</h2>
-		<p class="fit-lede">Every line below comes from the Nex posting. Where I’m not there yet, I say so.</p>
+		<p class="fit-lede">Every line below comes from the Nex posting. Where I have direct proof, I show it. Where I am still growing, I say so.</p>
 		<ul class="fit-list">
 			{#each fit as f}
 				<li class={f.status}>
@@ -118,8 +118,8 @@
 
 <section class="one" use:motion use:scrollScene>
 	<div class="wrap">
-		<h2 class="display"><span>Here’s what</span><span>I’ve built.</span></h2>
-		<p>Client websites, a simpler way to edit them, and tools I built when the existing ones didn’t fit. Each project has a story behind it.</p>
+		<h2 class="display"><span>Here is what</span><span>I have built.</span></h2>
+		<p>Client websites, safer CMS tools, SEO systems, call workflows, and internal tools I built when the existing options did not fit.</p>
 	</div>
 </section>
 
@@ -135,7 +135,7 @@
 
 <section id="how" class="how" use:motion>
 	<div class="wrap">
-		<h2 class="display">What I’ve learned<br />along the way</h2>
+		<h2 class="display">What I have learned<br />along the way.</h2>
 		<ol>
 			{#each principles as p, i}
 				<li>
@@ -152,7 +152,7 @@
 		<img src="/family.jpg" alt="Brayden with his partner and two young sons" width="960" height="960" loading="lazy" />
 		<div>
 			<span class="eyebrow">Away from the keyboard</span>
-			<h2 class="display">And then there<br />are these two.</h2>
+			<h2 class="display">The reason this<br />role stood out.</h2>
 			<p>
 				These are the two behind the Nex connection. It would mean a lot to help build the web experience for a product we already enjoy together.
 			</p>

@@ -2,7 +2,8 @@
 	<div class="wrap grid">
 		<div>
 			<h2 class="display">Say hello.</h2>
-			<p>I’m looking for a full-time frontend role with a team I can learn from and contribute to. Based in Southern Utah, working remotely.</p>
+			<p>I am looking for a full-time frontend role focused on marketing sites, digital experience, CMS tooling, and the systems that help teams move faster without breaking things.</p>
+			<p>Based in Southern Utah. Working remotely.</p>
 			<p class="moon"><span aria-hidden="true">☾</span> Everything on this site was built after bedtime, once my two boys were asleep, plus a few early mornings before they woke up.</p>
 		</div>
 		<ul>
@@ -12,7 +13,7 @@
 		</ul>
 	</div>
 	<div class="wrap legal">
-		<small>© {new Date().getFullYear()} Brayden Gregersen. Built with SvelteKit on Cloudflare Pages at bedtimebuilds.com. Styled after nexplayground.com, not affiliated with Nex.</small>
+		<small>© {new Date().getFullYear()} Brayden Gregersen. Built with SvelteKit on Cloudflare Pages at bedtimebuilds.com. Inspired by nexplayground.com. Not affiliated with Nex.</small>
 	</div>
 </footer>
 

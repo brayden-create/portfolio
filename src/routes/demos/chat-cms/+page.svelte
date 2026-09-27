@@ -22,7 +22,7 @@
 	let n = 1;
 
 	let site = $state({
-		sat: '9am to 5pm',
+		sat: '10am to 4pm',
 		pages: [
 			{ title: 'Home', status: 'Published' },
 			{ title: 'Memberships', status: 'Published' },

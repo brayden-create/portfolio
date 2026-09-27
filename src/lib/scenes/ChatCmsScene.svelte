@@ -8,7 +8,7 @@
 		<header><span class="t">🦎 Brave Lizard CMS</span><span class="who">john@bravelizard.com</span></header>
 		<nav><span class="on">Chat</span><span>Activity Log</span><span>Tasks</span><span>Memory</span></nav>
 		<div class="msgs">
-			<div class="m user">{#key step === 0}<span class="type">Change Saturday hours to 8am to 4pm</span>{/key}</div>
+			<div class="m user">{#key step === 0}<span class="type">Change Saturday hours to 9am to 5pm</span>{/key}</div>
 			{#if step >= 1}
 				<div class="m act" style="--d:0s">→ list_pages {'{'}search: "home"{'}'}</div>
 				<div class="m act" style="--d:.35s">→ get_page {'{'}id: 49544{'}'}</div>
@@ -18,7 +18,7 @@
 				<div class="m check">validateContent() · PASS<small>scoped CSS · no scripts · allowlisted URLs</small></div>
 			{/if}
 			{#if step >= 3}
-				<div class="m bot">Done. Saturday now reads 8am to 4pm. It’s in the Activity Log if you need to undo it.</div>
+				<div class="m bot">Done. Saturday now reads 9am to 5pm. It’s in the Activity Log if you need to undo it.</div>
 			{/if}
 		</div>
 		<div class="composer"><span>What do you want to change on the site?</span><b>SEND</b></div>
@@ -30,7 +30,7 @@
 		<div class="hours" class:flash={step >= 2}>
 			<b>RANGE HOURS</b>
 			<span>Thu to Fri <em>12pm to sunset</em></span>
-			<span>Saturday <em class="swap">{#if step >= 2}<ins>8am to 4pm</ins>{:else}9am to 5pm{/if}</em></span>
+			<span>Saturday <em class="swap">{#if step >= 2}<ins>9am to 5pm</ins>{:else}10am to 4pm{/if}</em></span>
 		</div>
 	</div>
 
