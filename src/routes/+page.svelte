@@ -8,6 +8,21 @@
 	import WordBands from '$lib/components/WordBands.svelte';
 	import { projects } from '$lib/data/projects';
 
+	const fit = [
+		{ status: 'yes', ask: 'Built and maintained a production marketing site real teams depend on', proof: 'Client sites for local businesses, which I run and update myself, like bravelizard.com and kalamasilvas.com.', href: '#kalama', cta: 'Kalama Silvas' },
+		{ status: 'yes', ask: 'Set up or evolved a CMS for a non-technical team', proof: 'A plain-English CMS a range owner uses instead of WordPress admin, then redeployed for a second client in half the time.', href: '/demos/chat-cms/', cta: 'Try the CMS' },
+		{ status: 'yes', ask: 'Writes tests and cares about edge cases', proof: 'A 40-test Vitest suite on a call-dispatch service, a production validator on every CMS write, and build checks that fail on bad copy.', href: '#outbound', cta: 'See the tests' },
+		{ status: 'part', ask: 'Diagnosed and fixed real performance bottlenecks (LCP)', proof: 'My SEO pipeline collects Core Web Vitals, and this site lazy-loads its product fonts. A documented before and after on a client site is next.', href: '', cta: '' },
+		{ status: 'yes', ask: 'Takes it end to end, from scoping to smoke testing in production', proof: 'I’m usually the only engineer, so every project here went from the owner’s ask to a verified deploy.', href: '#work', cta: 'The work' },
+		{ status: 'yes', ask: 'Works closely with marketers, designers and stakeholders', proof: 'Business owners are my stakeholders. Turning “can it just do this?” into something they can run is the whole job.', href: '#chat-cms', cta: 'Chat CMS' },
+		{ status: 'yes', ask: 'Uses AI tools like Claude Code, and knows when to push back', proof: 'Daily. I check what it writes against the real code and data. Several claims on this site were corrected that way.', href: '#how', cta: 'How I work' },
+		{ status: 'yes', ask: 'TypeScript and a modern framework (SvelteKit, bonus for Svelte)', proof: 'This site is SvelteKit and Svelte 5. Ops Tasks is Next.js and React. Most of my Workers are strict TypeScript.', href: '#this-site', cta: 'This site' },
+		{ status: 'part', ask: 'Bonus: Sanity CMS', proof: 'Learning it now. The project data on this site is already modeled as typed documents, ready to move into a Studio.', href: '', cta: '' },
+		{ status: 'part', ask: 'Bonus: Figma and design feedback', proof: 'I work from designs and give feedback on them, but Figma isn’t my daily tool yet.', href: '', cta: '' },
+		{ status: 'yes', ask: 'Bonus: documentation others actually want to read', proof: 'I wrote a step-by-step build playbook for the CMS, which is how the second deployment went twice as fast.', href: '#clearpoint', cta: 'The redeploy' },
+		{ status: 'no', ask: 'Bonus: localization, GDPR and cookie consent', proof: 'Not something I’ve shipped yet.', href: '', cta: '' }
+	];
+
 	const principles = [
 		{ t: 'Make changes safe', d: 'A business owner should be able to update a page without worrying about breaking the site. In the CMS, I validate changes on the server, ask before deleting, and keep an activity log.' },
 		{ t: 'Find out what happened', d: 'I like the troubleshooting part. A broken layout, a blocked request, a page Google indexed twice: I want to understand the cause before changing things.' },
@@ -17,20 +32,20 @@
 </script>
 
 <svelte:head>
-	<title>Brayden Gregersen · Frontend Engineer</title>
+	<title>Brayden Gregersen · For the Nex team</title>
 	<meta
 		name="description"
-		content="Brayden Gregersen builds fast marketing sites, CMS tools for non-technical teams, and the Cloudflare infrastructure behind them."
+		content="Brayden Gregersen, applying for Frontend Engineer, Marketing &amp; Digital Experience at Nex. A product he believes in, and the work to back it up."
 	/>
 </svelte:head>
 
 <section class="hero" use:motion use:scrollScene>
 	<div class="wrap">
-		<p class="eyebrow intro">BRAYDEN GREGERSEN · FRONTEND ENGINEER</p>
-		<h1 class="display"><span>I build sites</span><span>people can</span><span><em>actually run.</em></span></h1>
+		<p class="eyebrow intro">FOR THE NEX TEAM · FRONTEND ENGINEER, MARKETING &amp; DIGITAL EXPERIENCE</p>
+		<h1 class="display"><span>A product</span><span>I’m behind.</span><span><em>Skills you can</em></span><span><em>get behind.</em></span></h1>
 		<p class="lede">I build marketing sites and the systems behind them. Frontend, CMS tooling, integrations, analytics and the guardrails that keep changes safe.</p>
 		<p class="hero-note">Usually because someone said, “There has to be an easier way.”</p>
-		<Button href="#work" label="See the work" />
+		<Button href="#fit" label="See how I fit the role" />
 	</div>
 	<div class="hero-art" aria-hidden="true">
 		<div class="win w1"><i></i><i></i><i></i><b style="width:70%"></b><b style="width:45%"></b></div>
@@ -81,6 +96,26 @@
 	</div>
 </section>
 
+<section id="fit" class="fit">
+	<div class="wrap">
+		<p class="eyebrow">The job, line by line</p>
+		<h2 class="display">What you asked for.<br />Where to see it.</h2>
+		<p class="fit-lede">Every line below comes from the Nex posting. Where I’m not there yet, I say so.</p>
+		<ul class="fit-list">
+			{#each fit as f}
+				<li class={f.status}>
+					<span class="mark" aria-hidden="true">{f.status === 'yes' ? '✓' : f.status === 'part' ? '◐' : '○'}</span>
+					<div>
+						<b>{f.ask}</b>
+						<span>{f.proof}</span>
+					</div>
+					{#if f.href}<a href={f.href}>{f.cta} →</a>{:else}<em>{f.status === 'part' ? 'In progress' : 'Not yet'}</em>{/if}
+				</li>
+			{/each}
+		</ul>
+	</div>
+</section>
+
 <section class="one" use:motion use:scrollScene>
 	<div class="wrap">
 		<h2 class="display"><span>Here’s what</span><span>I’ve built.</span></h2>
@@ -127,6 +162,20 @@
 </section>
 
 <style>
+	.fit { background: var(--paper); padding: 110px 0 90px; scroll-margin-top: 84px; }
+	.fit .eyebrow { color: var(--green); margin: 0 0 18px; }
+	.fit h2 { font-size: clamp(42px, 6vw, 84px); line-height: .96; }
+	.fit-lede { font-size: 19px; max-width: 52ch; margin: 22px 0 40px; }
+	.fit-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+	.fit-list li { display: grid; grid-template-columns: 44px 1fr auto; gap: 18px; align-items: center; background: var(--white); border-radius: 16px; padding: 18px 22px; }
+	.fit-list .mark { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; font-weight: 700; background: var(--green); color: #fff; }
+	.fit-list .part .mark { background: #f2c14e; color: var(--ink); }
+	.fit-list .no .mark { background: var(--mist); color: var(--ink); }
+	.fit-list b { display: block; font-size: 17px; margin-bottom: 3px; }
+	.fit-list span { font-size: 15px; color: #4a3f36; }
+	.fit-list a { font-weight: 700; color: var(--green); white-space: nowrap; text-underline-offset: 4px; padding: 10px 0; }
+	.fit-list em { font-style: normal; font: 500 12px var(--mono); color: #6b5f55; white-space: nowrap; }
+	@media (max-width: 700px) { .fit { padding: 70px 0; } .fit-list li { grid-template-columns: 36px 1fr; padding: 16px; gap: 12px; } .fit-list .mark { width: 34px; height: 34px; } .fit-list a, .fit-list em { grid-column: 2; } }
 	.career-move { background: var(--green); color: var(--white); padding: 100px 0; scroll-margin-top: 84px; }
 	.move-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 70px; align-items: start; }
 	.career-move .eyebrow { color: var(--mint); margin: 0 0 24px; }

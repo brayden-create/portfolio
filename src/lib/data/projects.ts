@@ -39,7 +39,7 @@ export const projects: Project[] = [
 		tone: 'ink',
 		featured: true,
 		summary:
-			'A second client, a counter-drone company, wanted the same plain-English CMS. I copied the Brave Lizard build, rebranded it, pointed it at their WordPress theme and rewrote the assistant for their business. Kickoff to a deployed CMS took about two days, half the time of the original.',
+			'A second client, a counter-drone company, wanted the same plain-English CMS. I copied the Brave Lizard build, rebranded it, pointed it at their WordPress theme and rewrote the assistant for their business. Kickoff to a deployed CMS took about two days, half the time of the original. I also rebuilt their seven-page site, where the navigation, mobile menu and process explorer run on CSS alone because the CMS strips every script.',
 		hard:
 			'Reusing code without sharing anything else. The auth, routing and validator carried over almost untouched, but every piece of infrastructure is new: its own Airtable base with a token scoped to it, a capped Anthropic key, a static-IP proxy for the host firewall and Google SSO for two people. I caught the Airtable token over-scoped during setup, and the other bases now return 403.',
 		stack: ['Cloudflare Workers', 'Anthropic tool use', 'WordPress REST (Avada)', 'Railway proxy', 'Cloudflare Access', 'Airtable'],
