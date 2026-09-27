@@ -1,6 +1,6 @@
 # Brayden Gregersen · portfolio + resume
 
-Live: https://brayden-gregersen.pages.dev
+Live: https://bedtimebuilds.com
 
 SvelteKit (Svelte 5 runes, TypeScript), prerendered and deployed to Cloudflare Pages. The visual design is a from-scratch homage to nexplayground.com, using open-source fonts (Rubik, Be Vietnam Pro). It isn't affiliated with Nex.
 

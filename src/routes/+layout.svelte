@@ -3,11 +3,13 @@
 	import Nav from '$lib/components/Nav.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 
+	import { page } from '$app/state';
 	let { children } = $props();
 	let paused = $state(false);
 </script>
 
 <svelte:head>
+	<link rel="canonical" href={`https://bedtimebuilds.com${page.url.pathname}`} />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
 	<link

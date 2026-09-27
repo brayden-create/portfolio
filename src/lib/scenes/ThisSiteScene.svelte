@@ -32,12 +32,12 @@
 			{/if}
 			{#if step === 3}
 				<div class="l cmd" style="--d:.1s">$ wrangler pages deploy</div>
-				<div class="l go" style="--d:.3s">✨ brayden-gregersen.pages.dev</div>
+				<div class="l go" style="--d:.3s">✨ bedtimebuilds.com</div>
 			{/if}
 		</div>
 
 		<div class="preview" class:live={step === 3}>
-			<div class="pbar"><i></i><i></i><i></i><span>{step === 3 ? 'brayden-gregersen.pages.dev' : 'localhost'}</span></div>
+			<div class="pbar"><i></i><i></i><i></i><span>{step === 3 ? 'bedtimebuilds.com' : 'localhost'}</span></div>
 			<div class="pbody">
 				<strong>I BUILD SITES PEOPLE CAN <em>ACTUALLY RUN.</em></strong>
 				<span class="btn"><i>➜</i>See the work</span>

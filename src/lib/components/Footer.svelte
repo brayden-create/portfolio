@@ -3,6 +3,7 @@
 		<div>
 			<h2 class="display">Say hello.</h2>
 			<p>I’m looking for a full-time frontend role with a team I can learn from and contribute to. Based in Southern Utah, working remotely.</p>
+			<p class="moon"><span aria-hidden="true">☾</span> Everything on this site was built after bedtime, once my two boys were asleep, plus a few early mornings before they woke up.</p>
 		</div>
 		<ul>
 			<li><span class="eyebrow">Email</span><a href="mailto:brayden@plpages.com">brayden@plpages.com</a></li>
@@ -11,11 +12,21 @@
 		</ul>
 	</div>
 	<div class="wrap legal">
-		<small>© {new Date().getFullYear()} Brayden Gregersen. Built with SvelteKit on Cloudflare Pages. Styled after nexplayground.com, not affiliated with Nex.</small>
+		<small>© {new Date().getFullYear()} Brayden Gregersen. Built with SvelteKit on Cloudflare Pages at bedtimebuilds.com. Styled after nexplayground.com, not affiliated with Nex.</small>
 	</div>
 </footer>
 
 <style>
+	.moon {
+		font-size: 15px;
+		opacity: 0.85;
+		max-width: 52ch;
+	}
+	.moon span {
+		color: var(--violet);
+		font-size: 18px;
+		margin-right: 4px;
+	}
 	footer {
 		background: var(--paper);
 		padding: 96px 0 32px;
