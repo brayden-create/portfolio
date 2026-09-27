@@ -59,6 +59,12 @@
 		</div>
 	</div>
 
+	<div class="wrap">
+		<a class="see-more" href="https://bedtimebuilds.com">
+			<span class="moon" aria-hidden="true">☾</span>
+			<span><strong>See the work in action at bedtimebuilds.com.</strong> Live demos, animated walkthroughs of each project, and the Nex posting matched line by line. All of it built after bedtime.</span>
+		</a>
+	</div>
 	<div class="wrap body">
 		<section>
 			<h2 class="eyebrow">Summary</h2>
@@ -121,6 +127,27 @@
 	}
 	.nw {
 		white-space: nowrap;
+	}
+	.see-more {
+		display: flex;
+		gap: 12px;
+		align-items: center;
+		margin-top: 22px;
+		padding: 14px 18px;
+		background: #c4e1ce;
+		border-left: 5px solid #007e2e;
+		border-radius: 8px;
+		color: #271c13;
+		text-decoration: none;
+		font-size: 15px;
+		line-height: 1.45;
+	}
+	.see-more strong {
+		color: #007e2e;
+	}
+	.see-more .moon {
+		font-size: 22px;
+		color: #5b2eff;
 	}
 	.contact {
 		margin: 0;
@@ -228,6 +255,13 @@
 	}
 
 	@media print {
+		.see-more {
+			margin-top: 10px;
+			padding: 7px 12px;
+			font-size: 9.4pt;
+			print-color-adjust: exact;
+			-webkit-print-color-adjust: exact;
+		}
 		:global(header),
 		:global(.skip),
 		button,
@@ -235,8 +269,8 @@
 			display: none !important;
 		}
 		:global(body) {
-			font-size: 9.6pt;
-			line-height: 1.3;
+			font-size: 9.3pt;
+			line-height: 1.28;
 			background: #fff;
 		}
 		.page {
@@ -247,7 +281,7 @@
 			border-bottom-width: 2px;
 		}
 		h1 {
-			font-size: 30pt;
+			font-size: 26pt;
 		}
 		h1 :global(br) {
 			display: none;
@@ -286,6 +320,6 @@
 	}
 	@page {
 		size: letter;
-		margin: 0.45in 0.5in;
+		margin: 0.38in 0.5in;
 	}
 </style>

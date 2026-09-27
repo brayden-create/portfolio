@@ -1,6 +1,7 @@
 <script lang="ts">
 	import '$lib/scroll-scenes.css';
 	import { scrollScene } from '$lib/scrollScene';
+	import { whyNexScroll } from '$lib/whyNexScroll';
 	import { motion } from '$lib/motion';
 	import Button from '$lib/components/Button.svelte';
 	import Cube from '$lib/components/Cube.svelte';
@@ -20,7 +21,7 @@
 		{ status: "part", ask: "Bonus: Sanity CMS", proof: "I am learning it now. The project data on this site is already modeled as typed documents, ready to move into a Studio.", href: "", cta: "" },
 		{ status: "part", ask: "Bonus: Figma and design feedback", proof: "I use Figma through Claude Code API to inspect designs, understand layout systems, and translate design feedback into shipped implementation changes.", href: "", cta: "" },
 		{ status: "yes", ask: "Bonus: documentation others actually use", proof: "I wrote a step-by-step CMS build playbook, which helped the second deployment move about twice as fast.", href: "#clearpoint", cta: "The redeploy" },
-		{ status: "no", ask: "Bonus: localization, GDPR, and cookie consent", proof: "I have not shipped this yet.", href: "", cta: "" }
+		{ status: "no", ask: "Bonus: localization, GDPR, and cookie consent", proof: "I have not shipped multilingual sites or a full cookie consent flow yet, but I understand the basics: region-aware content, privacy-safe tracking, consent before non-essential cookies, and clear handling of user data.", href: "", cta: "" }
 	];
 
 	const principles = [
@@ -57,10 +58,13 @@
 	</svg>
 </section>
 
-<section class="why-nex" use:motion>
+<section id="why-nex" class="why-nex" use:whyNexScroll>
+	<div class="why-sticky">
 	<div class="wrap why-grid">
-		<div><p class="eyebrow">Why Nex</p><h2 class="display">We already have one<br />in our living room.</h2></div>
-		<div><p>My family owns and regularly uses Nex Playground. My two boys know the product before they know the company behind it.</p><p>So when I saw a frontend engineering role focused on marketing and digital experience, it felt different.</p><p>This is not just a company I found on a job board. It is a product already part of our home.</p></div>
+		<h2 class="why-title">WHY NEX?</h2>
+		<div class="why-copy"><h3 class="display">We already have one<br />in our living room.</h3></div>
+		<div class="why-body"><p>My family owns and regularly uses Nex Playground. My two boys know the product before they know the company behind it.</p><p>So when I saw a frontend engineering role focused on marketing and digital experience, it felt different.</p><p>This is not just a company I found on a job board. It is a product already part of our home.</p></div>
+	</div>
 	</div>
 </section>
 
@@ -188,7 +192,7 @@
 	.hero-note { max-width: 46ch; margin: 0 auto 28px; }
 	.why-nex { background: var(--mint); padding: 84px 0; }
 	.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-	.why-nex h2 { font-size: clamp(40px, 5vw, 64px); margin-top: 20px; }
+	.why-nex .why-copy h3 { font-size: clamp(40px, 5vw, 64px); margin-top: 20px; }
 	.why-nex p { max-width: 48ch; }
 	@media (max-width: 860px) { .why-grid { grid-template-columns: 1fr; gap: 20px; } }
 	.intro { margin-bottom: 28px; color: var(--green); }
