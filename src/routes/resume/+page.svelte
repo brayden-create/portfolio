@@ -49,7 +49,7 @@
 			<h1 class="display">Brayden <br />Gregersen</h1>
 			<p class="role">Frontend / full-stack TypeScript engineer: marketing sites, CMS tooling, performance</p>
 			<p class="contact">
-				St. George, Utah (remote) · <a class="nw" href="tel:+14356508594">435-650-8594</a> ·
+				Cedar City, Utah (remote) · <a class="nw" href="tel:+14356508594">435-650-8594</a> ·
 				<a href="mailto:brayden@plpages.com">brayden@plpages.com</a>
 			</p>
 		</div>
