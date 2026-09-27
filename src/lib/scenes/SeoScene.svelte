@@ -9,10 +9,10 @@
 <div class="ops">
 	<div class="head">
 		<div>
-			<strong>Brave Lizard Tactical</strong>
-			<small>bravelizard.com · Firearms training &amp; range · Beryl, UT</small>
+			<strong>PL Pages</strong>
+			<small>plpages.com · Web, SEO &amp; business systems · Southern Utah</small>
 		</div>
-		<span class="live">LIVE</span>
+		<span class="tags"><span class="live">LIVE</span><span class="sample">SAMPLE DATA</span></span>
 	</div>
 	<div class="stats">
 		<span><em>KEYWORDS</em>48</span>
@@ -38,16 +38,16 @@
 	{:else}
 		<div class="item" class:approved={step >= 3}>
 			<div class="body">
-				<span class="title">Rewrite title tag on /uspsa-matches</span>
-				<span class="desc">Current title is “Matches | Brave Lizard”. You sit #7 for a 90/mo query. Target: “USPSA Matches in Southern Utah | Brave Lizard Tactical”.</span>
+				<span class="title">Rewrite title tag on /results/</span>
+				<span class="desc">The title never says what the page proves. Searchers looking for local SEO results in Southern Utah see “What We Built and What Happened”. Lead with the service and the place.</span>
 				<span class="meta">ON-PAGE · 10m · DOER</span>
 				{#if step >= 2}
-					<span class="verify">VERIFY: PASS <small>grounded in finding #F-12 (GSC query + current title)</small></span>
+					<span class="verify">VERIFY: PASS <small>grounded in finding #F-12 (Search Console queries + current title)</small></span>
 				{/if}
 				{#if step >= 3}
 					<div class="diff">
-						<del>&lt;title&gt;Matches | Brave Lizard&lt;/title&gt;</del>
-						<ins>&lt;title&gt;USPSA Matches in Southern Utah | Brave Lizard Tactical&lt;/title&gt;</ins>
+						<del>&lt;title&gt;Results: What We Built and What Happened | Precision Landing Pages&lt;/title&gt;</del>
+						<ins>&lt;title&gt;Local SEO &amp; Website Results in Southern Utah | PL Pages&lt;/title&gt;</ins>
 					</div>
 				{/if}
 			</div>
@@ -96,6 +96,18 @@
 		border-radius: 4px;
 		border: 1px solid;
 		white-space: nowrap;
+	}
+	.tags {
+		display: flex;
+		gap: 6px;
+	}
+	.sample {
+		font: 700 10px 'JetBrains Mono', monospace;
+		letter-spacing: 0.12em;
+		padding: 3px 8px;
+		border-radius: 4px;
+		border: 1px solid rgba(187, 161, 255, 0.5);
+		color: #bba1ff;
 	}
 	.live {
 		color: #00ff94;
