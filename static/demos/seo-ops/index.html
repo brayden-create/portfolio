@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <meta name="theme-color" content="#0a0e14"/>
-<title>Brave Lizard Tactical · SEO Ops</title>
+<title>Sample Client Portfolio · SEO Ops</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
@@ -279,7 +279,7 @@ const esc = (s) => String(s ?? '').replace(/[&<>"']/g,(c)=>({'&':'&amp;','<':'&l
 const sevClass = (s) => s?.startsWith('P0')?'sev-p0':s?.startsWith('P1')?'sev-p1':'sev-p2';
 function showToast(msg, kind='ok'){ const t=$('toast'); t.textContent=msg; t.classList.remove('error','warn'); if(kind!=='ok')t.classList.add(kind); t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2600); }
 
-const SITE = { name:'Brave Lizard Tactical', domain:'bravelizard.com', niche:'Firearms training & shooting range', location:'St. George, UT · 320 acres', status:'Active', profile:'Conservative', keywordsCount:48, pagesCount:22 };
+const SITE = { name:'Sample Client Portfolio', domain:'6 demo sites', niche:'Mixed local services', location:'Fictional businesses', status:'Active', profile:'Conservative', keywordsCount:212, pagesCount:118 };
 
 let uid = 100;
 const nid = () => 'a' + (uid++);
@@ -290,42 +290,42 @@ const state = {
   collapsed: new Set(['done']),
   seo: {
     awaitingApproval: [
-      { id:nid(), title:'Build /precision-rifle-clinic landing page', severity:'P1 · High', actionType:'New Page', effort:90, owner:'doer', doerNotes:'', description:'No page targets "precision rifle class utah" (170/mo) — you only rank #14 via a blog post. Both competitors have dedicated clinic pages. Pull copy from the PRS match page + instructor bios.' },
-      { id:nid(), title:'Rewrite title tag on /uspsa-matches', severity:'P1 · High', actionType:'On-Page', effort:10, owner:'doer', verifierVerdict:'pass', doerNotes:'', description:'Current title is "Matches | Brave Lizard". Target "USPSA Matches in Southern Utah | Brave Lizard Tactical" — matches a 90/mo query you sit #7 on.' },
-      { id:nid(), title:'Add FAQ schema to /memberships', severity:'P2 · Med', actionType:'On-Page', effort:25, owner:'doer', doerNotes:'', description:'"People also ask" shows 6 membership questions (cost, guests, family plan, cancellation). Add FAQPage schema to win the rich result.' },
-      { id:nid(), title:'Fix NAP — address differs on 3 citations', severity:'P2 · Med', actionType:'Citations', effort:30, owner:'va', doerNotes:'', description:'BrightLocal flags Yelp, Foursquare & MapQuest still listing the old PO box. Update to the physical staging-area address used on GBP.' },
+      { id:nid(), title:'Harbor Plumbing · Build /water-heater-repair landing page', severity:'P1 · High', actionType:'New Page', effort:90, owner:'doer', doerNotes:'', description:'No page targets "water heater repair" (210/mo) and the site only ranks #14 through a blog post. Both top competitors have dedicated service pages. Pull copy from the services list and the tech bios.' },
+      { id:nid(), title:'Bright Smile Dental · Rewrite title tag on /emergency-dentist', severity:'P1 · High', actionType:'On-Page', effort:10, owner:'doer', verifierVerdict:'pass', doerNotes:'', description:'Current title is "Emergency | Bright Smile". Target "Emergency Dentist Open Saturdays | Bright Smile Dental", which matches a 140/mo query the page sits #7 on.' },
+      { id:nid(), title:'Paws & Suds Grooming · Add FAQ schema to /pricing', severity:'P2 · Med', actionType:'On-Page', effort:25, owner:'doer', doerNotes:'', description:'"People also ask" shows 6 grooming questions (cost by breed, nail trims, first visit, cancellations). Add FAQPage schema to win the rich result.' },
+      { id:nid(), title:'Red Mesa Roofing · Fix NAP on 3 citations', severity:'P2 · Med', actionType:'Citations', effort:30, owner:'va', doerNotes:'', description:'BrightLocal flags Yelp, Foursquare and MapQuest still listing the old suite number. Update to the address used on the Google Business Profile.' },
     ],
     approved: [
-      { id:nid(), title:"Publish blog: 'First time at an outdoor range — what to bring'", severity:'P2 · Med', actionType:'Content', effort:60, owner:'doer', doerNotes:'Keep it beginner-friendly. Link to the beginner pistol clinic + the digital waiver page. Mention water/sun — desert range.' , description:'Targets "what to bring to a shooting range" (320/mo, informational). Feeds the beginner-clinic funnel.'},
-      { id:nid(), title:'Add internal links from 6 blog posts → /training', severity:'P2 · Med', actionType:'Internal Links', effort:20, owner:'doer', doerNotes:'', description:'Training hub has only 3 internal links. Add contextual links from the safety + match-recap posts.' },
+      { id:nid(), title:"Sweet Crumb Bakery · Publish blog: 'How far ahead to order a wedding cake'", severity:'P2 · Med', actionType:'Content', effort:60, owner:'doer', doerNotes:'Keep it friendly and practical. Link to the tasting booking page and the custom order form. Mention the 6-week lead time for tiered cakes.' , description:'Targets "when to order wedding cake" (320/mo, informational). Feeds the tasting-appointment funnel.'},
+      { id:nid(), title:'Canyon Air HVAC · Add internal links from 6 blog posts → /ac-repair', severity:'P2 · Med', actionType:'Internal Links', effort:20, owner:'doer', doerNotes:'', description:'The AC repair page has only 3 internal links. Add contextual links from the maintenance-checklist and summer-bill posts.' },
     ],
     draftReview: [
-      { id:nid(), title:"Rewrite /memberships hero for 'shooting range membership st george'", severity:'P1 · High', actionType:'On-Page', effort:30, owner:'doer', doerNotes:'Keep the "320 acres / shoot at sunrise" angle — it is the differentiator vs indoor ranges.',
-        doerOutput:'H1: Shooting Range Memberships in St. George — 320 Acres of Open Desert\n\nIntro: Skip the cramped indoor lanes. A Brave Lizard membership gets you year-round access to 320 acres of high-desert range — pistol bays, rifle lines out past 1,000 yards, and the freedom to actually move and train. Individual, family, and corporate plans. Shoot at sunrise, stay the weekend at our RV park, and get real reps with real instructors.\n\nMeta title: Shooting Range Membership St. George UT | Brave Lizard Tactical\nMeta description: Join a 320-acre outdoor shooting range in St. George. Individual, family & corporate memberships, training clinics, matches & on-site RV park.' },
+      { id:nid(), title:"Juniper Yoga · Rewrite /memberships hero for 'yoga membership near me'", severity:'P1 · High', actionType:'On-Page', effort:30, owner:'doer', doerNotes:'Keep the "first class free" angle. It is the differentiator against the two big-box gyms nearby.',
+        doerOutput:'H1: Yoga Memberships With Your First Class Free\n\nIntro: Skip the crowded gym floor. A Juniper Yoga membership gets you unlimited classes in a small, heated studio, from gentle flow to power sessions, with teachers who learn your name. Monthly, annual and family plans. Try your first class free, then pick the plan that fits your week.\n\nMeta title: Yoga Membership, First Class Free | Juniper Yoga\nMeta description: Unlimited yoga classes in a small, friendly studio. Monthly, annual and family memberships. Your first class is free.' },
     ],
     done: [
-      { id:nid(), title:'Compress homepage hero images (LCP 3.4s → 1.9s)', severity:'P2 · Med', actionType:'Technical', effort:30, owner:'doer', executedAt:'2026-06-25', doerOutput:'Converted 6 hero/gallery images to WebP, added lazy-load below the fold. PageSpeed mobile 62 → 89. CLS now 0.02.' },
-      { id:nid(), title:'Build /two-gun-match event page', severity:'P1 · High', actionType:'New Page', effort:75, owner:'doer', executedAt:'2026-06-22', doerOutput:'Published /two-gun-match with schedule, divisions, registration CTA, and Event schema. Indexed; ranking #9 for "two gun match utah" within 4 days.' },
+      { id:nid(), title:'Harbor Plumbing · Compress homepage hero images (LCP 3.4s → 1.9s)', severity:'P2 · Med', actionType:'Technical', effort:30, owner:'doer', executedAt:'2026-06-25', doerOutput:'Converted 6 hero and gallery images to WebP, added lazy-load below the fold. PageSpeed mobile 62 → 89. CLS now 0.02.' },
+      { id:nid(), title:'Northside Auto Detail · Build /ceramic-coating service page', severity:'P1 · High', actionType:'New Page', effort:75, owner:'doer', executedAt:'2026-06-22', doerOutput:'Published /ceramic-coating with packages, before and after gallery, booking CTA and Service schema. Indexed and ranking #9 for "ceramic coating near me" within 4 days.' },
     ],
   },
   gbp: {
     proposed: [
-      { id:nid(), caption:'Two-Gun Match — Saturday July 12', body:'Run pistol + rifle stages across our 320-acre desert range. Open + tactical divisions, new shooters welcome with an RSO. Squad up — limited slots.', cta:'BOOK', batch:'GEN-0627', img:'🎯' },
-      { id:nid(), caption:'New: Beginner Pistol Clinic every Saturday', body:'Never shot before? Our 2-hour intro covers safety, stance, grip and live fire with a certified instructor. Eye + ear pro provided. Bring water — it is the desert.', cta:'SIGN_UP', batch:'GEN-0627', img:'🔫' },
-      { id:nid(), caption:'RV hookups now open to members', body:'Stay the weekend. Full hookups at the range, roll out of bed and shoot at sunrise before the heat. Members book first.', cta:'LEARN_MORE', batch:'GEN-0627', img:'🏕' },
+      { id:nid(), caption:'Sweet Crumb · Pumpkin loaves are back', body:'Fresh every Friday through October. Order ahead online or grab one at the counter before they sell out.', cta:'ORDER', batch:'GEN-0627', img:'🎃' },
+      { id:nid(), caption:'Paws & Suds · New puppy first-groom package', body:'A gentle 45-minute intro for puppies under 6 months: bath, brush, nail trim and lots of treats. Booking now.', cta:'BOOK', batch:'GEN-0627', img:'🐶' },
+      { id:nid(), caption:'Canyon Air · Book your fall furnace tune-up', body:'Beat the first cold snap. A 21-point furnace check, filter swap and carbon monoxide test. Same-week appointments.', cta:'CALL', batch:'GEN-0627', img:'🔥' },
     ],
     approved: [],
     scheduled: [
-      { id:nid(), caption:'Precision Rifle Series kicks off this month', body:'PRS-style stages from 300 to 1,000+ yards. Spotters welcome. First match of the season — come zero and compete.', cta:'BOOK', batch:'GEN-0620', img:'🎯', scheduledFor:'in 3d' },
+      { id:nid(), caption:'Bright Smile · Now open Saturdays', body:'Emergency and routine visits every Saturday, 8am to 1pm. New patients welcome, most insurance accepted.', cta:'BOOK', batch:'GEN-0620', img:'🦷', scheduledFor:'in 3d' },
     ],
     published: [
-      { id:nid(), caption:'Memorial Day Two-Gun recap', body:'42 shooters, 6 stages, zero ND. Thanks to everyone who came out. Photos on Facebook — next match July 12.', cta:'None', batch:'GEN-0522', img:'🏆', scheduledFor:'May 27' },
+      { id:nid(), caption:'Red Mesa Roofing · Storm season inspections', body:'Free roof inspections after any hail or wind storm. We photograph everything and help with your insurance claim.', cta:'None', batch:'GEN-0522', img:'🏠', scheduledFor:'May 27' },
     ],
   },
   audits: [
-    { id:'RUN-0627-A', status:'complete', cost:0.38, when:'3h ago', summary:'48 keywords · avg pos 11.2 (▲1.8 wk). 4 new actions queued. Biggest gaps: precision-rifle + membership landing pages.' },
-    { id:'RUN-0624-A', status:'complete', cost:0.41, when:'3d ago', summary:'Review velocity low vs competitor avg (187 vs 410). NAP mismatch on 3 citations flagged.' },
-    { id:'RUN-0620-A', status:'complete', cost:0.35, when:'7d ago', summary:'Core Web Vitals failing on mobile (LCP 3.4s). Two-gun match page opportunity identified.' },
+    { id:'RUN-0627-A', status:'complete', cost:0.38, when:'3h ago', summary:'6 sites · 212 keywords · avg pos 11.2 (▲1.8 wk). 4 new actions queued. Biggest gaps: service landing pages for plumbing and dental.' },
+    { id:'RUN-0624-A', status:'complete', cost:0.41, when:'3d ago', summary:'Review velocity low for Red Mesa Roofing vs competitor avg (18 vs 41). NAP mismatch on 3 citations flagged.' },
+    { id:'RUN-0620-A', status:'complete', cost:0.35, when:'7d ago', summary:'Core Web Vitals failing on mobile for Harbor Plumbing (LCP 3.4s). Ceramic coating page opportunity identified for Northside Auto Detail.' },
   ],
 };
 
@@ -354,7 +354,7 @@ function render(){
       </div>
       <div class="site-links">
         <a class="site-link" href="#" style="color:#00FF94;border-color:rgba(0,255,148,0.3);">▦ WORK BOARD</a>
-        <a class="site-link" href="https://bravelizard.com" target="_blank" rel="noopener">DOMAIN ↗</a>
+        <a class="site-link" href="#">DOMAINS ↗</a>
         <a class="site-link" href="#">GBP ↗</a>
         <a class="site-link" href="#">WP-ADMIN ↗</a>
       </div>
@@ -511,9 +511,9 @@ function gbpCard(p){
 function renderSetup(){
   const rows = [
     ['CONNECTORS', [
-      ['Google Business Profile (GBP)', true, 'Brave Lizard Tactical'],
-      ['Google Search Console', true, 'sc-domain:bravelizard.com'],
-      ['WordPress app password', true, 'bravelizard.com'],
+      ['Google Business Profile (GBP)', true, '6 of 6 locations'],
+      ['Google Search Console', true, '6 domain properties'],
+      ['WordPress app password', true, '5 of 6 sites'],
       ['GHL location + social account', true, 'connected'],
       ['Google Ads (scope)', false, 'needs adwords scope'],
     ]],
@@ -598,8 +598,8 @@ function runAudit(){
   (function nextStep(){
     if(i<steps.length){ msg.innerHTML=`<span style="color:#00FF94;">▶ ${steps[i][0]}</span> · ${steps[i][1]}`; i++; setTimeout(nextStep,900); }
     else {
-      state.audits.unshift({ id:'RUN-0627-B', status:'complete', cost:0.39, when:'just now', summary:'48 keywords · avg pos 10.9 (▲0.3). 1 new action: schema gap on /training. Re-confirmed precision-rifle page priority.' });
-      state.seo.awaitingApproval.unshift({ id:nid(), title:'Add Course schema to /training clinics', severity:'P2 · Med', actionType:'On-Page', effort:20, owner:'doer', doerNotes:'', description:'Clinics list lacks Course/Event schema — competitors show price + date in results. Add structured data per clinic.' });
+      state.audits.unshift({ id:'RUN-0627-B', status:'complete', cost:0.39, when:'just now', summary:'6 sites · 212 keywords · avg pos 10.9 (▲0.3). 1 new action: schema gap on Juniper Yoga class pages. Re-confirmed water heater page priority.' });
+      state.seo.awaitingApproval.unshift({ id:nid(), title:'Juniper Yoga · Add Event schema to /class-schedule', severity:'P2 · Med', actionType:'On-Page', effort:20, owner:'doer', doerNotes:'', description:'The class schedule lacks Event schema. Competitors show times and prices in results. Add structured data per recurring class.' });
       msg.textContent='RUN A FRESH AUDIT (COLLECT → ANALYZE → PLAN → VERIFY). NO DOER.'; btn.disabled=false; btn.innerHTML='<span>RUN AUDIT</span>';
       render(); showToast('AUDIT COMPLETE · 1 NEW ACTION QUEUED');
     }
@@ -632,7 +632,7 @@ function publishDraft(id, silent){
   removeFrom('draftReview',id); it.executedAt='just now';
   it.doerOutput='Published live to WordPress via app password. URL updated, sitemap pinged, change logged to Airtable.';
   state.seo.done.unshift(it);
-  if(!silent){ render(); showToast('PUBLISHED LIVE → bravelizard.com'); }
+  if(!silent){ render(); showToast('PUBLISHED LIVE → client site'); }
 }
 
 // ── GBP modal ──
@@ -641,7 +641,7 @@ function openGbp(id){
   const r=findGbp(id); if(!r) return; curGbp=r;
   const p=r.item;
   $('gbpCap').value=p.caption||''; $('gbpBody').value=p.body||''; $('gbpImg').value=p.imageUrl||'';
-  $('gbpCta').value=p.cta||'None'; $('gbpCtaUrl').value='https://bravelizard.com/events'; $('gbpNotes').value=p.doerNotes||'';
+  $('gbpCta').value=p.cta||'None'; $('gbpCtaUrl').value='https://example.com/book'; $('gbpNotes').value=p.doerNotes||'';
   $('gbpModalImgWrap').innerHTML=`<div style="height:120px; border-radius:8px; background:rgba(0,0,0,0.4); display:flex; align-items:center; justify-content:center; font-size:48px;">${p.img||'▦'}</div>`;
   $('gbpModal').classList.add('show');
 }
@@ -660,9 +660,9 @@ function generateGbp(){
   const btn=$('gbpGen'); btn.disabled=true; btn.innerHTML='<span class="spinner"></span><span>WRITING</span>';
   setTimeout(()=>{
     const fresh=[
-      { id:nid(), caption:'Father–son range day this weekend', body:'Bring the kid out for a safe first session. Family memberships cover both — instructor-led, all gear provided.', cta:'BOOK', batch:'GEN-0627-B', img:'🎯' },
-      { id:nid(), caption:'Long-range 101: zero past 600 yards', body:'New precision clinic for anyone who wants to stretch it out. Spotting scopes available, data books included.', cta:'SIGN_UP', batch:'GEN-0627-B', img:'🔭' },
-      { id:nid(), caption:'Corporate team-building packages', body:'Book the range for your crew — guided stations, friendly competition, catering optional. Quotes same day.', cta:'CALL', batch:'GEN-0627-B', img:'🤝' },
+      { id:nid(), caption:'Northside Auto · Winter wax special', body:'Protect your paint before road salt season. Hand wash, clay bar and sealant, done in one afternoon.', cta:'BOOK', batch:'GEN-0627-B', img:'🚗' },
+      { id:nid(), caption:'Harbor Plumbing · Is your water heater 10+ years old?', body:'Most tanks wear out between 8 and 12 years. Book a free check and we will tell you straight if it is time.', cta:'CALL', batch:'GEN-0627-B', img:'🔧' },
+      { id:nid(), caption:'Juniper Yoga · New Sunday morning slow flow', body:'A gentle 60-minute class to start the week. Beginners welcome, mats provided, first class free.', cta:'SIGN_UP', batch:'GEN-0627-B', img:'🧘' },
     ];
     state.gbp.proposed.unshift(...fresh);
     btn.disabled=false; btn.innerHTML='<span>GENERATE 3</span>'; render(); showToast('GENERATED 3 NEW POSTS · REVIEW & SCHEDULE');
@@ -672,9 +672,9 @@ function generateGbp(){
 // ── per-task Discuss & Verify chat ──
 let chatId=null;
 const CHAT_SCRIPT = [
-  { tools:['get_page bravelizard.com/memberships','serp "shooting range membership st george"','keyword_ranks(membership*)'] },
-  { role:'assistant', text:'Checked the live page and SERP. Right now /memberships ranks #8 for "shooting range membership st george" (90/mo). The page leads with pricing tiers but never says "St. George" or "membership" in the H1 — and the top 3 results all do. Your 320-acre / outdoor angle is a real differentiator none of them use.' },
-  { role:'assistant', plan:true, text:'PLAN: Rewrite the H1 + intro to lead with "Shooting Range Memberships in St. George" and the 320-acre outdoor hook, add the keyword to the meta title, and keep the pricing tiers below. Low risk, on-page only. Want me to draft it?' },
+  { tools:['get_page juniperyoga.example/memberships','serp "yoga membership near me"','keyword_ranks(membership*)'] },
+  { role:'assistant', text:'Checked the live page and SERP. Right now /memberships ranks #8 for "yoga membership near me" (90/mo). The page leads with pricing tiers but never says "yoga membership" in the H1, and the top 3 results all do. The first-class-free offer is a real differentiator none of them lead with.' },
+  { role:'assistant', plan:true, text:'PLAN: Rewrite the H1 and intro to lead with "Yoga Memberships" and the first-class-free hook, add the keyword to the meta title, and keep the pricing tiers below. Low risk, on-page only. Want me to draft it?' },
 ];
 function openChat(id){
   chatId=id; const it=findItem(id);
@@ -699,7 +699,7 @@ $('chatSend').addEventListener('click',()=>{
   setTimeout(()=>{ think.remove(); appendTools(CHAT_SCRIPT[0].tools); },500);
   setTimeout(()=>{ appendChat('assistant',CHAT_SCRIPT[1].text); },1500);
   setTimeout(()=>{ appendChat('assistant',CHAT_SCRIPT[2].text,true); $('chatPlanState').textContent='plan ready · saved to doer notes'; $('chatDraft').disabled=false;
-    const it=findItem(chatId); if(it && !it.doerNotes){ it.doerNotes='Lead H1 with "Shooting Range Memberships in St. George" + 320-acre outdoor hook; keyword in meta title; keep pricing tiers below.'; } },2500);
+    const it=findItem(chatId); if(it && !it.doerNotes){ it.doerNotes='Lead H1 with "Yoga Memberships" + first-class-free hook; keyword in meta title; keep pricing tiers below.'; } },2500);
 });
 $('chatClose').addEventListener('click',()=>{ $('chatModal').classList.remove('show'); render(); });
 $('chatModal').addEventListener('click',e=>{ if(e.target.id==='chatModal'){ $('chatModal').classList.remove('show'); render(); } });
@@ -712,7 +712,7 @@ $('refreshBtn').addEventListener('click',()=>{ $('lastUpdated').textContent='UPD
 
 // ── Walkthrough ──
 const TOUR = [
-  { tab:'seo', sel:'#hero', title:'One site, one command center', body:'This is the whole platform focused on Brave Lizard Tactical. The top row is the snapshot the agent keeps current on its own: keywords tracked, pages, what is waiting on you, and when it last audited the site.' },
+  { tab:'seo', sel:'#hero', title:'One command center', body:'This demo runs across six made-up local businesses, from a plumber to a yoga studio. The top row is the snapshot the agent keeps current on its own: keywords tracked, pages, what is waiting on you, and when it last audited the site.' },
   { tab:'seo', sel:'#tabs', title:'Three areas', body:'SEO TASKS — the website work. GBP SCHEDULE — your Google Business posts. SETUP — what is connected. The yellow number means "needs your eyes."' },
   { tab:'seo', sel:'#actionBar', title:'Run an audit', body:'RUN AUDIT walks the site through collect → analyze → plan → verify — it gathers data, finds gaps vs competitors, and writes a to-do list. It never touches the live site. Try clicking it after the tour.' },
   { tab:'seo', sel:'[data-group="awaitingApproval"]', title:'Nothing happens without you', body:'Every idea lands here first. Tick the ones you like and APPROVE SELECTED — or open one and hit DISCUSS & VERIFY to make the agent prove it against the live page and SERP before you commit.' },

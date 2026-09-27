@@ -1,10 +1,10 @@
 /* Scroll choreography is separate from project content and demo components. */
 @media screen and (min-width: 861px) and (prefers-reduced-motion: no-preference) {
- .meet.scroll-enabled { height: auto; padding: 80px 0; position: relative; }
+ .meet.scroll-enabled { height: auto; padding: 80px 0 160px; position: relative; overflow: clip; }
+ .meet.scroll-enabled .meet-grid > div:first-child { position: relative; z-index: 2; }
  .meet.scroll-enabled .meet-grid { position: relative; min-height: 0; align-items: start; padding-block: 0; }
 
  .meet.scroll-enabled h2 { transform-origin: left center; transform: none; }
- .meet.scroll-enabled .scene { transform: translateX(calc((1 - var(--scene, 0)) * 80px)) rotate(calc(-12deg + var(--scene, 0) * 24deg)) scale(calc(.8 + var(--scene, 0) * .65)); }
  .meet.scroll-enabled { background: color-mix(in srgb, var(--teal), var(--mint) calc(var(--scene, 0) * 65%)); }
  .hero.scroll-enabled .wrap { transform: translateY(calc(var(--scene, 0) * 65px)); }
  .hero.scroll-enabled .hero-art { transform: none; }
@@ -20,7 +20,6 @@
 }
 @media screen and (max-width: 860px) and (prefers-reduced-motion: no-preference) {
  .one.scroll-enabled h2 { transform: scale(calc(.94 + var(--passage, .5) * .1)); }
- .meet.scroll-enabled .scene { transform: rotate(calc(-5deg + var(--passage, .5) * 10deg)); }
 }
 /* Pausing releases the sticky sequence so all content remains easy to read. */
 .motion-paused .scroll-enabled { --scene: .5 !important; --passage: .5 !important; }
@@ -40,3 +39,12 @@
 .why-scroll-ready .why-copy h3, .why-scroll-ready .why-body { opacity: var(--why-reveal, 0); transform: translateY(calc((1 - var(--why-reveal, 0)) * 24px)); }
 @media(max-width:860px) { .why-scroll-ready .why-sticky { top: 72px; } }
 @media print { .why-nex.why-scroll-ready { height: auto; padding: 50px 0; } .why-scroll-ready .why-sticky { position: static; height: auto; overflow: visible; } .why-nex .why-title { transform: none!important; } .why-scroll-ready .why-copy h3, .why-scroll-ready .why-body { opacity: 1; transform: none; } }
+
+@media print { .elastic-edge { display: none !important; } }
+
+.background-art .scene { --s: min(600px, 82vw) !important; }
+@media screen and (prefers-reduced-motion: no-preference) {
+ .meet .background-art.scroll-enabled .scene { transform-origin: center; transform: rotate(calc(-8deg + var(--passage, 0) * 14deg)) scale(clamp(.6, calc((var(--passage, 0) - .12) * 4), 1.38)); }
+}
+@media (max-width: 860px) { .meet .background-art.scroll-enabled .scene { transform: scale(clamp(.7, calc(var(--passage, 0) * 3), 1.1)); } }
+.motion-paused .meet .background-art .scene { transform: none !important; }

@@ -2,6 +2,7 @@
 	import '../app.css';
 	import Nav from '$lib/components/Nav.svelte';
 	import Footer from '$lib/components/Footer.svelte';
+	import { elasticEdges } from '$lib/elasticEdges';
 
 	import { page } from '$app/state';
 	let { children } = $props();
@@ -25,7 +26,7 @@
 <a class="skip" href="#main">Skip to content</a>
 <Nav />
 <button class="motion-toggle" aria-pressed={paused} onclick={() => { paused = !paused; document.documentElement.classList.toggle('motion-paused', paused); }}>{paused ? 'Play motion' : 'Pause motion'}</button>
-<main id="main">
+<main id="main" use:elasticEdges>
 	{@render children()}
 </main>
 <Footer />

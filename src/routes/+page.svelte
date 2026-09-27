@@ -5,6 +5,8 @@
 	import { motion } from '$lib/motion';
 	import Button from '$lib/components/Button.svelte';
 	import Cube from '$lib/components/Cube.svelte';
+	import ExitDoor from '$lib/components/ExitDoor.svelte';
+	import { doorScroll } from '$lib/doorScroll';
 	import ProjectCard from '$lib/components/ProjectCard.svelte';
 	import WordBands from '$lib/components/WordBands.svelte';
 	import { projects } from '$lib/data/projects';
@@ -53,9 +55,6 @@
 		<div class="win w2"><span>Websites.</span><span>Tools.</span><span>Less busywork.</span></div>
 		<div class="win w3"><em>“Change Saturday hours to 9am to 5pm.”</em><strong>✓ Change saved to activity log</strong></div>
 	</div>
-	<svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
-		<path d="M0 60 L1440 0 V90 H0Z" fill="var(--mint)" />
-	</svg>
 </section>
 
 <section id="why-nex" class="why-nex" use:whyNexScroll>
@@ -81,17 +80,16 @@
 			<p>The way I work did not.</p>
 			<p>Find the real problem. Understand why it happened. Build the fix. Test it under real conditions. Leave the system better than you found it.</p>
 		</div>
-		<div class="background-art"><Cube size={200} /></div>
+		<div class="background-art" use:scrollScene><Cube size={600} /></div>
 	</div>
 </section>
 
-<section id="why-now" class="career-move">
+<section id="why-now" class="career-move" use:doorScroll>
 	<div class="wrap move-grid">
-		<div use:motion>
+		<div class="move-door"><ExitDoor /></div>
+		<div class="move-story" use:motion>
 			<p class="eyebrow">Why now</p>
 			<h2 class="display">I am not looking<br />for an exit.</h2>
-		</div>
-		<div class="move-story" use:motion>
 			<p>I checked out the role because my family already knew Nex. I kept reading because the work sounded like the direction I have been moving toward on my own.</p>
 			<p>I have spent the last few years learning software and building sites, tools, and systems outside my full-time job.</p>
 			<p class="move-heart"><strong>I am not trying to get away from what I do now. I am trying to get closer to what I want to get really good at.</strong></p>
@@ -153,12 +151,12 @@
 
 <section class="family" use:motion use:scrollScene>
 	<div class="wrap fam-grid">
-		<img src="/family.jpg" alt="Brayden with his partner and two young sons" width="960" height="960" loading="lazy" />
+		<img src="/family.jpg" alt="Brayden with his wife and two young sons" width="960" height="960" loading="lazy" />
 		<div>
 			<span class="eyebrow">Away from the keyboard</span>
-			<h2 class="display">The reason this<br />role stood out.</h2>
+			<h2 class="display">These are<br />the three.</h2>
 			<p>
-				These are the two behind the Nex connection. It would mean a lot to help build the web experience for a product we already enjoy together.
+				My wife and our two boys. The three behind the Nex connection. It would mean a lot to help build the web experience for a product we already enjoy together.
 			</p>
 			<Button href="/resume/" label="Read the resume" tone="green" />
 		</div>
@@ -181,13 +179,14 @@
 	.fit-list em { font-style: normal; font: 500 12px var(--mono); color: #6b5f55; white-space: nowrap; }
 	@media (max-width: 700px) { .fit { padding: 70px 0; } .fit-list li { grid-template-columns: 36px 1fr; padding: 16px; gap: 12px; } .fit-list .mark { width: 34px; height: 34px; } .fit-list a, .fit-list em { grid-column: 2; } }
 	.career-move { background: var(--green); color: var(--white); padding: 100px 0; scroll-margin-top: 84px; }
+	.move-door { align-self: center; }
 	.move-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 70px; align-items: start; }
 	.career-move .eyebrow { color: var(--mint); margin: 0 0 24px; }
-	.career-move h2 { font-size: clamp(42px, 5.5vw, 72px); line-height: .98; }
+	.career-move h2 { margin-bottom: 32px; font-size: clamp(42px, 5.5vw, 72px); line-height: .98; }
 	.move-story p { max-width: 50ch; margin: 0 0 22px; }
 	.move-story p:last-child { margin-bottom: 0; }
 	.move-story .move-heart { font-size: clamp(23px, 2.2vw, 29px); line-height: 1.4; color: var(--white); margin-block: 30px; }
-	@media (max-width: 860px) { .career-move { padding: 64px 0; } .move-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; } }
+	@media (max-width: 860px) { .career-move { padding: 64px 0; } .move-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; } .move-story { order: -1; } }
 
 	.hero-note { max-width: 46ch; margin: 0 auto 28px; }
 	.why-nex { background: var(--mint); padding: 84px 0; }
@@ -319,7 +318,7 @@
 	}
 	.meet-grid {
 		display: grid;
-		grid-template-columns: 1.1fr 0.9fr;
+		grid-template-columns: 1fr;
 		gap: 40px;
 		align-items: center;
 	}
@@ -328,7 +327,10 @@
 		font-size: clamp(48px, 6vw, 80px);
 		margin-bottom: 24px;
 	}
-	.background-art { position: sticky; top: 160px; align-self: start; padding-top: 50px; }
+	.meet-grid > div:first-child { columns: 2; column-gap: 70px; }
+	.meet-grid > div:first-child h2 { column-span: all; }
+	.meet-grid > div:first-child p { break-inside: avoid; }
+	.background-art { display: grid; place-items: center; min-height: 800px; padding: 30px 0; }
 	.meet p {
 		max-width: 56ch;
 		font-size: 18px;
@@ -424,7 +426,8 @@
 		.how ol {
 			grid-template-columns: minmax(0, 1fr);
 		}
-		.background-art { position: static; padding-top: 0; }
+		.meet-grid > div:first-child { columns: 1; }
+		.background-art { min-height: 440px; padding: 0; }
 		.hero {
 			margin-top: -68px;
 			padding: 120px 0 120px;

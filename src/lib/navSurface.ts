@@ -15,7 +15,7 @@ export function navSurface(header: HTMLElement) {
 		if (header.classList.contains('open')) return;
 		// Include the small scroll-margin gap left by section anchor links.
 		const bar = header.querySelector<HTMLElement>('.bar');
-		const sampleY = (bar ?? header).getBoundingClientRect().bottom + 32;
+		const sampleY = (bar ?? header).getBoundingClientRect().bottom + 36;
 		const section = [...sections].reverse().find(el => {
 			const box = el.getBoundingClientRect();
 			return box.top <= sampleY && box.bottom > sampleY;
